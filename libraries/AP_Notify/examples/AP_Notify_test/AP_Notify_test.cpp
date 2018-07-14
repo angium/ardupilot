@@ -31,7 +31,8 @@ void setup()
 
 void loop()
 {
-    hal.scheduler->delay(1000);
+	hal.console->printf("initialising = %d",AP_Notify::flags.initialising);
+	hal.scheduler->delay(1000);
 }
 
 AP_HAL_MAIN();
