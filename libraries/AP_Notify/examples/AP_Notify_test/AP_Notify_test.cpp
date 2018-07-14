@@ -27,7 +27,7 @@ void setup()
     AP_Notify::flags.external_leds = true;
 
     // add all the backends
-    notify.add_backends();
+    notify.new_add_backends();
 
     // initialise the board leds
  //   board_led.init();
