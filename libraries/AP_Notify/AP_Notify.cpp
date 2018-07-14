@@ -132,10 +132,10 @@ void AP_Notify::new_add_backends(void)
 {
 
 	ADD_BACKEND(new AP_BoardLED());
-	ADD_BACKEND(new ToshibaLED_I2C(TOSHIBA_LED_I2C_BUS_EXTERNAL));
-	ADD_BACKEND(new ToshibaLED_I2C(TOSHIBA_LED_I2C_BUS_INTERNAL));
-	ADD_BACKEND(new ToneAlarm_PX4());
-	ADD_BACKEND(new Display());
+//	ADD_BACKEND(new ToshibaLED_I2C(TOSHIBA_LED_I2C_BUS_EXTERNAL));
+//	ADD_BACKEND(new ToshibaLED_I2C(TOSHIBA_LED_I2C_BUS_INTERNAL));
+//	ADD_BACKEND(new ToneAlarm_PX4());
+//	ADD_BACKEND(new Display());
 
 
 }
