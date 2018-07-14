@@ -25,11 +25,11 @@ void setup()
     memset(&notify.events, 0, sizeof(notify.events));
 
     notify.flags.external_leds = true;
-//	ADD_BACKEND(new AP_BoardLED());
- //   ADD_BACKEND(new ToshibaLED_I2C(TOSHIBA_LED_I2C_BUS_EXTERNAL));
- //   ADD_BACKEND(new ToshibaLED_I2C(TOSHIBA_LED_I2C_BUS_INTERNAL));
- //   ADD_BACKEND(new ToneAlarm_PX4());
-//    ADD_BACKEND(new Display());
+	ADD_BACKEND(new AP_BoardLED());
+    ADD_BACKEND(new ToshibaLED_I2C(TOSHIBA_LED_I2C_BUS_EXTERNAL));
+    ADD_BACKEND(new ToshibaLED_I2C(TOSHIBA_LED_I2C_BUS_INTERNAL));
+    ADD_BACKEND(new ToneAlarm_PX4());
+    ADD_BACKEND(new Display());
     // initialise the board leds
  //   board_led.init();
 
