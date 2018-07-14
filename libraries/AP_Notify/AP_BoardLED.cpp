@@ -51,7 +51,7 @@ bool AP_BoardLED::init(void)
 void AP_BoardLED::update(void)
 {
     _counter++;
-
+	hal.console->printf("_counter = %d",_counter);
     // we never want to update LEDs at a higher than 16Hz rate
     if (_counter % 3 != 0) {
         return;
