@@ -21,10 +21,10 @@ void setup()
 	
 
     hal.console->printf("AP_Notify library test\n");
-	memset(&notify.flags, 0, sizeof(notify.flags));
-    memset(&notify.events, 0, sizeof(notify.events));
+//	memset(&notify.flags, 0, sizeof(notify.flags));
+//    memset(&notify.events, 0, sizeof(notify.events));
 
-    notify.flags.external_leds = true;
+//    notify.flags.external_leds = true;
 	ADD_BACKEND(new AP_BoardLED());
     ADD_BACKEND(new ToshibaLED_I2C(TOSHIBA_LED_I2C_BUS_EXTERNAL));
     ADD_BACKEND(new ToshibaLED_I2C(TOSHIBA_LED_I2C_BUS_INTERNAL));
