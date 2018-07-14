@@ -324,9 +324,8 @@ void RGBLed::update_colours(void)
 // at 50Hz
 void RGBLed::update()
 {
-	hal.console->printf("update\n");
-
-	if (!pNotify->_rgb_led_override) {
+		if (!pNotify->_rgb_led_override) {
+			hal.console->printf("update_colours\n");
         update_colours();
         set_rgb(_red_des, _green_des, _blue_des);
     } else {
