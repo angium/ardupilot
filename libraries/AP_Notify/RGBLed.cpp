@@ -59,7 +59,6 @@ void RGBLed::_set_rgb(uint8_t red, uint8_t green, uint8_t blue)
 // set_rgb - set color as a combination of red, green and blue values
 void RGBLed::set_rgb(uint8_t red, uint8_t green, uint8_t blue)
 {
-	hal.console->printf("_rgb_led_override = %d\n",int(pNotify->_rgb_led_override));
 	if (pNotify->_rgb_led_override) {
         // don't set if in override mode
         return;
@@ -72,8 +71,6 @@ void RGBLed::set_rgb(uint8_t red, uint8_t green, uint8_t blue)
 void RGBLed::update_colours(void)
 {
     uint8_t brightness = _led_bright;
-	hal.console->printf("led_brightness = %d\n",int(pNotify->_rgb_led_brightness));
-
     switch (pNotify->_rgb_led_brightness) {
     case RGB_LED_OFF:
         brightness = _led_off;
@@ -107,7 +104,6 @@ void RGBLed::update_colours(void)
     // use dim light when connected through USB
     if (hal.gpio->usb_connected() && brightness > _led_dim) {
 		
-		hal.console->printf("usb_connected\n");
         brightness = _led_dim;
     }
 
