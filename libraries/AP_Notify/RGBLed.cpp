@@ -67,6 +67,7 @@ void RGBLed::set_rgb(uint8_t red, uint8_t green, uint8_t blue)
 void RGBLed::update_colours(void)
 {
     uint8_t brightness = _led_bright;
+	hal.console->printf("rgb_led_brightness = %d\n",pNotify->_rgb_led_brightness);
 
     switch (pNotify->_rgb_led_brightness) {
     case RGB_LED_OFF:
@@ -325,7 +326,7 @@ void RGBLed::update_colours(void)
 void RGBLed::update()
 {
 		if (!pNotify->_rgb_led_override) {
-			hal.console->printf("update_colours\n");
+
         update_colours();
         set_rgb(_red_des, _green_des, _blue_des);
     } else {
