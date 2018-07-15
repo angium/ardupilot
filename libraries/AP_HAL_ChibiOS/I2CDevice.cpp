@@ -196,7 +196,7 @@ bool I2CDevice::transfer(const uint8_t *send, uint32_t send_len,
 
 
 	if (!bus.semaphore.check_owner()) {
-        hal.console->printf("I2C: not owner of 0x%x\n", (unsigned)get_bus_id());
+        hal.console->printf("check_owner\n");
         return false;
     }
     
