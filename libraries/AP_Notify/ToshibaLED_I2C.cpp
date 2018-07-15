@@ -97,5 +97,13 @@ void ToshibaLED_I2C::_timer(void)
                        (uint8_t)(rgb.g / 16), (uint8_t)(rgb.r / 16) };
 	hal.console->printf("_timer running \n");
 
+	int i;
+	hal.console->printf("rgb.b = %d rgb.g = %d rgb.r = %d \n",rgb.b,rgb.g,rgb.r);
+	
+	for(i = 0;i<4;i++)
+	{
+		hal.console->printf("val[%d] = %d\n",i,val[i]);
+	}
+
     _dev->transfer(val, sizeof(val), nullptr, 0);
 }

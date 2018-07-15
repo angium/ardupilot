@@ -11,27 +11,39 @@ void setup();
 void loop();
 
 const AP_HAL::HAL& hal = AP_HAL::get_HAL();
+AP_Notify notify;
 
 // create board led object
-AP_BoardLED board_led;
+//AP_BoardLED board_led;
 
 void setup()
 {
+	
+
     hal.console->printf("AP_Notify library test\n");
+    memset(&AP_Notify::flags, 0, sizeof(AP_Notify::flags));
+    memset(&AP_Notify::events, 0, sizeof(AP_Notify::events));
+
+    AP_Notify::flags.external_leds = true;
+
+    // add all the backends
+    notify.new_add_backends();
 
     // initialise the board leds
-    board_led.init();
+ //   board_led.init();
 
     // turn on initialising notification
-    AP_Notify::flags.initialising = true;
-    AP_Notify::flags.gps_status = 1;
-    AP_Notify::flags.armed = 1;
-    AP_Notify::flags.pre_arm_check = 1;
+ //   AP_Notify::flags.initialising = true;
+ //   AP_Notify::flags.gps_status = 1;
+ //   AP_Notify::flags.armed = 1;
+ //   AP_Notify::flags.pre_arm_check = 1;
 }
 
 void loop()
 {
-    hal.scheduler->delay(1000);
+	hal.console->printf("initialising = %d",AP_Notify::flags.initialising);
+	notify.update();
+	hal.scheduler->delay(50);
 }
 
 AP_HAL_MAIN();

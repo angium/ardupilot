@@ -40,11 +40,15 @@ bool RGBLed::init()
 // set_rgb - set color as a combination of red, green and blue values
 void RGBLed::_set_rgb(uint8_t red, uint8_t green, uint8_t blue)
 {
-    if (red != _red_curr ||
+	hal.console->printf("red = %d,green =%d,blue =%d,_red_curr = %d,_green_curr =%d,_blue_curr =%d\n",red,green,blue,_red_curr,_green_curr,_blue_curr);
+
+
+	if (red != _red_curr ||
         green != _green_curr ||
         blue != _blue_curr) {
         // call the hardware update routine
         if (hw_set_rgb(red, green, blue)) {
+			
             _red_curr = red;
             _green_curr = green;
             _blue_curr = blue;
@@ -55,7 +59,8 @@ void RGBLed::_set_rgb(uint8_t red, uint8_t green, uint8_t blue)
 // set_rgb - set color as a combination of red, green and blue values
 void RGBLed::set_rgb(uint8_t red, uint8_t green, uint8_t blue)
 {
-    if (pNotify->_rgb_led_override) {
+	hal.console->printf("_rgb_led_override = %d\n",int(pNotify->_rgb_led_override));
+	if (pNotify->_rgb_led_override) {
         // don't set if in override mode
         return;
     }
@@ -67,6 +72,7 @@ void RGBLed::set_rgb(uint8_t red, uint8_t green, uint8_t blue)
 void RGBLed::update_colours(void)
 {
     uint8_t brightness = _led_bright;
+	hal.console->printf("led_brightness = %d\n",int(pNotify->_rgb_led_brightness));
 
     switch (pNotify->_rgb_led_brightness) {
     case RGB_LED_OFF:
@@ -100,11 +106,14 @@ void RGBLed::update_colours(void)
 
     // use dim light when connected through USB
     if (hal.gpio->usb_connected() && brightness > _led_dim) {
+		
+		hal.console->printf("usb_connected\n");
         brightness = _led_dim;
     }
 
     // initialising pattern
     if (AP_Notify::flags.initialising) {
+
         if (step & 1) {
             // odd steps display red light
             _red_des = brightness;
@@ -123,6 +132,7 @@ void RGBLed::update_colours(void)
     
     // save trim and esc calibration pattern
     if (AP_Notify::flags.save_trim || AP_Notify::flags.esc_calibration) {
+
         switch(step) {
             case 0:
             case 3:
@@ -212,6 +222,7 @@ void RGBLed::update_colours(void)
 
     // solid green or blue if armed
     if (AP_Notify::flags.armed) {
+								hal.console->printf("armed\n");
         // solid green if armed with GPS 3d lock
         if (AP_Notify::flags.gps_status >= AP_GPS::GPS_OK_FIX_3D) {
             _red_des = _led_off;
@@ -226,17 +237,63 @@ void RGBLed::update_colours(void)
         return;
     }else{
         // double flash yellow if failing pre-arm checks
+        hal.console->printf(" not armed\n");
         if (!AP_Notify::flags.pre_arm_check) {
+			hal.console->printf(" pre_arm_check\n");
+			hal.console->printf(" step = %d\n",step);
             switch(step) {
                 case 0:
-                case 1:
-                case 4:
-                case 5:
+					case 1:
+						case 2:
+
+
+			
+       //         case 1:
+        //        case 4:
+        //        case 5:
                     // yellow on
-                    _red_des = brightness;
+//                    _red_des = brightness;
+			_red_des = _led_off;
                     _blue_des = _led_off;
                     _green_des = brightness;
                     break;
+					case 3:
+						case 4:
+							case 5:
+					
+					
+								
+				   //		  case 1:
+					//		  case 4:
+					//		  case 5:
+								// yellow on
+			//					  _red_des = brightness;
+						_red_des = _led_off;
+								_blue_des = brightness;
+								_green_des = _led_off;
+								break;
+										case 6:
+											case 7:
+												case 8:
+												case 9:									
+										
+													
+									   //		  case 1:
+										//		  case 4:
+										//		  case 5:
+													// yellow on
+								//					  _red_des = brightness;
+											_red_des = brightness;
+													_blue_des = _led_off;
+													_green_des = _led_off;
+													break;
+
+
+
+					
+    /*            case 1:
+                case 4:
+				case 5:
                 case 2:
                 case 3:
                 case 6:
@@ -247,9 +304,11 @@ void RGBLed::update_colours(void)
                     _red_des = _led_off;
                     _blue_des = _led_off;
                     _green_des = _led_off;
-                    break;
+                    break;*/
             }
         }else{
+        hal.console->printf(" no pre_arm_check\n");
+					hal.console->printf(" step = %d\n",step);
             // fast flashing green if disarmed with GPS 3D lock and DGPS
             // slow flashing green if disarmed with GPS 3d lock (and no DGPS)
             // flashing blue if disarmed with no gps lock or gps pre_arm checks have failed
@@ -324,7 +383,7 @@ void RGBLed::update_colours(void)
 // at 50Hz
 void RGBLed::update()
 {
-    if (!pNotify->_rgb_led_override) {
+	if (!pNotify->_rgb_led_override) {
         update_colours();
         set_rgb(_red_des, _green_des, _blue_des);
     } else {

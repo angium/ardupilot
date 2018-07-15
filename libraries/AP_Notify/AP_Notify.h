@@ -122,6 +122,8 @@ public:
 
     // add all backends
     void add_backends(void);
+	//jly test
+    void new_add_backends(void);
 
     /// update - allow updates of leds that cannot be updated during a timed interrupt
     void update(void);
