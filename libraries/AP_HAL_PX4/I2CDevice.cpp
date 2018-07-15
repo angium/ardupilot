@@ -139,7 +139,8 @@ I2CDevice::~I2CDevice()
 bool I2CDevice::transfer(const uint8_t *send, uint32_t send_len,
                          uint8_t *recv, uint32_t recv_len)
 {
-    perf_begin(perf);
+	hal.console->printf("I2C_PX4: transfer\n");
+	perf_begin(perf);
     bool ret = _px4dev.do_transfer(_address, send, send_len, recv, recv_len, _split_transfers);
     perf_end(perf);
     return ret;
