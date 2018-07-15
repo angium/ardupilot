@@ -40,9 +40,6 @@ bool RGBLed::init()
 // set_rgb - set color as a combination of red, green and blue values
 void RGBLed::_set_rgb(uint8_t red, uint8_t green, uint8_t blue)
 {
-	hal.console->printf("red = %d,green =%d,blue =%d,_red_curr = %d,_green_curr =%d,_blue_curr =%d\n",red,green,blue,_red_curr,_green_curr,_blue_curr);
-
-
 	if (red != _red_curr ||
         green != _green_curr ||
         blue != _blue_curr) {
@@ -218,7 +215,6 @@ void RGBLed::update_colours(void)
 
     // solid green or blue if armed
     if (AP_Notify::flags.armed) {
-								hal.console->printf("armed\n");
         // solid green if armed with GPS 3d lock
         if (AP_Notify::flags.gps_status >= AP_GPS::GPS_OK_FIX_3D) {
             _red_des = _led_off;
@@ -233,10 +229,7 @@ void RGBLed::update_colours(void)
         return;
     }else{
         // double flash yellow if failing pre-arm checks
-        hal.console->printf(" not armed\n");
         if (!AP_Notify::flags.pre_arm_check) {
-			hal.console->printf(" pre_arm_check\n");
-			hal.console->printf(" step = %d\n",step);
             switch(step) {
                 case 0:
 					case 1:
@@ -303,8 +296,6 @@ void RGBLed::update_colours(void)
                     break;*/
             }
         }else{
-        hal.console->printf(" no pre_arm_check\n");
-					hal.console->printf(" step = %d\n",step);
             // fast flashing green if disarmed with GPS 3D lock and DGPS
             // slow flashing green if disarmed with GPS 3d lock (and no DGPS)
             // flashing blue if disarmed with no gps lock or gps pre_arm checks have failed
