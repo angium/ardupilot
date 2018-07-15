@@ -108,12 +108,12 @@ void RGBLed::update_colours(void)
     if (hal.gpio->usb_connected() && brightness > _led_dim) {
 		
 		hal.console->printf("usb_connected\n");
-        brightness = _led_bright;
+        brightness = _led_dim;
     }
 
     // initialising pattern
     if (AP_Notify::flags.initialising) {
-				hal.console->printf("initialising true\n");
+
         if (step & 1) {
             // odd steps display red light
             _red_des = brightness;
@@ -132,7 +132,7 @@ void RGBLed::update_colours(void)
     
     // save trim and esc calibration pattern
     if (AP_Notify::flags.save_trim || AP_Notify::flags.esc_calibration) {
-						hal.console->printf("save_trim||esc_calibration true\n");
+
         switch(step) {
             case 0:
             case 3:
@@ -177,7 +177,6 @@ void RGBLed::update_colours(void)
     // ekf_bad pattern : flashing yellow and red
     if (AP_Notify::flags.failsafe_radio || AP_Notify::flags.failsafe_battery ||
             AP_Notify::flags.ekf_bad || AP_Notify::flags.gps_glitching || AP_Notify::flags.leak_detected) {
-            						hal.console->printf("failsafe true\n");
         switch(step) {
             case 0:
             case 1:
