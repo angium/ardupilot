@@ -43,7 +43,7 @@ void loop()
 {
 	hal.console->printf("initialising = %d",AP_Notify::flags.initialising);
 	notify.update();
-	hal.scheduler->delay(10);
+	hal.scheduler->delay(5);
 }
 
 AP_HAL_MAIN();
