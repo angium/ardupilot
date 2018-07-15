@@ -239,14 +239,18 @@ void RGBLed::update_colours(void)
 			hal.console->printf(" step = %d\n",step);
             switch(step) {
                 case 0:
-                case 1:
-                case 4:
-                case 5:
+       //         case 1:
+        //        case 4:
+        //        case 5:
                     // yellow on
-                    _red_des = brightness;
+//                    _red_des = brightness;
+			_red_des = _led_off;
                     _blue_des = _led_off;
                     _green_des = brightness;
                     break;
+                case 1:
+                case 4:
+				case 5:
                 case 2:
                 case 3:
                 case 6:
