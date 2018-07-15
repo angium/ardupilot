@@ -67,8 +67,7 @@ void RGBLed::set_rgb(uint8_t red, uint8_t green, uint8_t blue)
 void RGBLed::update_colours(void)
 {
     uint8_t brightness = _led_bright;
-//	hal->console.printf("hello = %d\n",pNotify->_rgb_led_brightness);
-	hal->console.printf("hello");
+	hal.console->printf("update_colours\n");
 
     switch (pNotify->_rgb_led_brightness) {
     case RGB_LED_OFF:
@@ -326,8 +325,7 @@ void RGBLed::update_colours(void)
 // at 50Hz
 void RGBLed::update()
 {
-		if (!pNotify->_rgb_led_override) {
-
+	if (!pNotify->_rgb_led_override) {
         update_colours();
         set_rgb(_red_des, _green_des, _blue_des);
     } else {
