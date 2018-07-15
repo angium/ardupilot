@@ -203,12 +203,16 @@ bool I2CDevice::transfer(const uint8_t *send, uint32_t send_len,
     bus.dma_handle->lock();
 
 #if defined(STM32F7)
+	hal.console->printf("STM32F7\n",);
+
     if (_use_smbus) {
         bus.i2ccfg.cr1 |= I2C_CR1_SMBHEN;
     } else {
         bus.i2ccfg.cr1 &= ~I2C_CR1_SMBHEN;
     }
 #else
+	hal.console->printf("not STM32F7\n",);
+
     if (_use_smbus) {
         bus.i2ccfg.op_mode = OPMODE_SMBUS_HOST;
     } else {
