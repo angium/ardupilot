@@ -101,11 +101,14 @@ void RGBLed::update_colours(void)
 
     // use dim light when connected through USB
     if (hal.gpio->usb_connected() && brightness > _led_dim) {
+		
+		hal.console->printf("usb_connected\n");
         brightness = _led_dim;
     }
 
     // initialising pattern
     if (AP_Notify::flags.initialising) {
+				hal.console->printf("initialising true\n");
         if (step & 1) {
             // odd steps display red light
             _red_des = brightness;
@@ -124,6 +127,7 @@ void RGBLed::update_colours(void)
     
     // save trim and esc calibration pattern
     if (AP_Notify::flags.save_trim || AP_Notify::flags.esc_calibration) {
+						hal.console->printf("save_trim||esc_calibration true\n");
         switch(step) {
             case 0:
             case 3:
@@ -168,6 +172,7 @@ void RGBLed::update_colours(void)
     // ekf_bad pattern : flashing yellow and red
     if (AP_Notify::flags.failsafe_radio || AP_Notify::flags.failsafe_battery ||
             AP_Notify::flags.ekf_bad || AP_Notify::flags.gps_glitching || AP_Notify::flags.leak_detected) {
+            						hal.console->printf("failsafe true\n");
         switch(step) {
             case 0:
             case 1:
@@ -213,6 +218,7 @@ void RGBLed::update_colours(void)
 
     // solid green or blue if armed
     if (AP_Notify::flags.armed) {
+								hal.console->printf("armed\n");
         // solid green if armed with GPS 3d lock
         if (AP_Notify::flags.gps_status >= AP_GPS::GPS_OK_FIX_3D) {
             _red_des = _led_off;
@@ -227,7 +233,10 @@ void RGBLed::update_colours(void)
         return;
     }else{
         // double flash yellow if failing pre-arm checks
+        hal.console->printf(" not armed\n");
         if (!AP_Notify::flags.pre_arm_check) {
+			hal.console->printf(" pre_arm_check\n");
+			hal.console->printf(" step = %d\n",step);
             switch(step) {
                 case 0:
                 case 1:
@@ -251,6 +260,8 @@ void RGBLed::update_colours(void)
                     break;
             }
         }else{
+        hal.console->printf(" no pre_arm_check\n");
+					hal.console->printf(" step = %d\n",step);
             // fast flashing green if disarmed with GPS 3D lock and DGPS
             // slow flashing green if disarmed with GPS 3d lock (and no DGPS)
             // flashing blue if disarmed with no gps lock or gps pre_arm checks have failed
