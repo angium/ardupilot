@@ -108,7 +108,7 @@ void RGBLed::update_colours(void)
     if (hal.gpio->usb_connected() && brightness > _led_dim) {
 		
 		hal.console->printf("usb_connected\n");
-        brightness = _led_medium;
+        brightness = _led_bright;
     }
 
     // initialising pattern
