@@ -40,11 +40,15 @@ bool RGBLed::init()
 // set_rgb - set color as a combination of red, green and blue values
 void RGBLed::_set_rgb(uint8_t red, uint8_t green, uint8_t blue)
 {
-    if (red != _red_curr ||
+	hal.console->printf("red = %d,green =%d,blue =%d,_red_curr = %d,_green_curr =%d,_blue_curr =%d\n",red,green,blue,_red_curr,_green_curr,_blue_curr);
+
+
+	if (red != _red_curr ||
         green != _green_curr ||
         blue != _blue_curr) {
         // call the hardware update routine
         if (hw_set_rgb(red, green, blue)) {
+			
             _red_curr = red;
             _green_curr = green;
             _blue_curr = blue;
@@ -55,7 +59,8 @@ void RGBLed::_set_rgb(uint8_t red, uint8_t green, uint8_t blue)
 // set_rgb - set color as a combination of red, green and blue values
 void RGBLed::set_rgb(uint8_t red, uint8_t green, uint8_t blue)
 {
-    if (pNotify->_rgb_led_override) {
+	hal.console->printf("_rgb_led_override = %d\n",int(pNotify->_rgb_led_override));
+	if (pNotify->_rgb_led_override) {
         // don't set if in override mode
         return;
     }
@@ -239,6 +244,11 @@ void RGBLed::update_colours(void)
 			hal.console->printf(" step = %d\n",step);
             switch(step) {
                 case 0:
+					case 1:
+						case 2:
+
+
+			
        //         case 1:
         //        case 4:
         //        case 5:
@@ -248,7 +258,41 @@ void RGBLed::update_colours(void)
                     _blue_des = _led_off;
                     _green_des = brightness;
                     break;
-                case 1:
+					case 3:
+						case 4:
+							case 5:
+					
+					
+								
+				   //		  case 1:
+					//		  case 4:
+					//		  case 5:
+								// yellow on
+			//					  _red_des = brightness;
+						_red_des = _led_off;
+								_blue_des = brightness;
+								_green_des = _led_off;
+								break;
+										case 6:
+											case 7:
+												case 8:
+												case 9:									
+										
+													
+									   //		  case 1:
+										//		  case 4:
+										//		  case 5:
+													// yellow on
+								//					  _red_des = brightness;
+											_red_des = brightness;
+													_blue_des = _led_off;
+													_green_des = _led_off;
+													break;
+
+
+
+					
+    /*            case 1:
                 case 4:
 				case 5:
                 case 2:
@@ -261,7 +305,7 @@ void RGBLed::update_colours(void)
                     _red_des = _led_off;
                     _blue_des = _led_off;
                     _green_des = _led_off;
-                    break;
+                    break;*/
             }
         }else{
         hal.console->printf(" no pre_arm_check\n");
