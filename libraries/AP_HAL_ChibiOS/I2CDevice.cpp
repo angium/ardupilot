@@ -192,7 +192,7 @@ void I2CBus::dma_deallocate(Shared_DMA *)
 bool I2CDevice::transfer(const uint8_t *send, uint32_t send_len,
                          uint8_t *recv, uint32_t recv_len)
 {
-	hal.console->printf("I2C: transfer\n",);
+	hal.console->printf("I2C: transfer\n");
 
 
 	if (!bus.semaphore.check_owner()) {
