@@ -90,8 +90,8 @@ void ToshibaLED_I2C::_timer(void)
  /*   if (!_need_update) {
 			hal.console->printf("NO NEED UPDATE \n");
         return;
-    }*/
-    _need_update = false;
+    }
+    _need_update = false;*/
 
     /* 4-bit for each color */
     uint8_t val[4] = { TOSHIBA_LED_PWM0, (uint8_t)(rgb.b >> 4),
@@ -99,7 +99,7 @@ void ToshibaLED_I2C::_timer(void)
 	int i;
 	for(i=0;i<4;i++)
 	{
-		hal.console->printf("val[%d] = %d \n",i,val[i]);
+	//	hal.console->printf("val[%d] = %d \n",i,val[i]);
 	}
 
 
