@@ -76,7 +76,7 @@ void loop(void)
     ::printf("Hello on debug console at %.3f seconds\n", (double)(AP_HAL::millis() * 0.001f));
 #endif
 #endif
-    hal.scheduler->delay(100);
+    hal.scheduler->delay(10);
 }
 
 AP_HAL_MAIN();
