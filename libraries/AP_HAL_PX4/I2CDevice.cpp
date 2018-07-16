@@ -72,8 +72,8 @@ uint8_t PX4_I2C::map_bus_number(uint8_t bus) const
 bool PX4_I2C::do_transfer(uint8_t address, const uint8_t *send, uint32_t send_len, uint8_t *recv, uint32_t recv_len, bool split_transfers)
 {
 
-	hal.console->printf("do_transfer\n");
 	set_address(address);
+	hal.console->printf("address = %d\n",address);
     if (!init_done) {
 		hal.console->printf("not init done\n");
         if (pthread_mutex_lock(&instance_lock) != 0) {
