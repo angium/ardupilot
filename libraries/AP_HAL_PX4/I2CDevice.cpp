@@ -71,8 +71,11 @@ uint8_t PX4_I2C::map_bus_number(uint8_t bus) const
  */
 bool PX4_I2C::do_transfer(uint8_t address, const uint8_t *send, uint32_t send_len, uint8_t *recv, uint32_t recv_len, bool split_transfers)
 {
-    set_address(address);
+
+	hal.console->printf("do_transfer\n");
+	set_address(address);
     if (!init_done) {
+		hal.console->printf("not init done\n");
         if (pthread_mutex_lock(&instance_lock) != 0) {
 			hal.console->printf("pthread_mutex_lock = %d\n",int(pthread_mutex_lock(&instance_lock)));
             return false;
@@ -93,6 +96,8 @@ bool PX4_I2C::do_transfer(uint8_t address, const uint8_t *send, uint32_t send_le
     }
 
     if (split_transfers) {
+		hal.console->printf("split_transfers\n");
+		
         /*
           splitting the transfer() into two pieces avoids a stop condition
           with SCL low which is not supported on some devices (such as
@@ -110,6 +115,7 @@ bool PX4_I2C::do_transfer(uint8_t address, const uint8_t *send, uint32_t send_le
         }
     } else {
         // combined transfer
+        hal.console->printf("combined transfer\n");
         if (transfer(send, send_len, recv, recv_len) != OK) {
             return false;
         }
