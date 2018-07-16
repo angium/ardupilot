@@ -74,6 +74,7 @@ bool PX4_I2C::do_transfer(uint8_t address, const uint8_t *send, uint32_t send_le
     set_address(address);
     if (!init_done) {
         if (pthread_mutex_lock(&instance_lock) != 0) {
+			hal.console->printf("pthread_mutex_lock = %d\n",int(pthread_mutex_lock(&instance_lock)));
             return false;
         }
         init_done = true;
