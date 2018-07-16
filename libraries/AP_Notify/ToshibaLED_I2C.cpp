@@ -99,7 +99,7 @@ void ToshibaLED_I2C::_timer(void)
 	int i;
 	for(i=0;i<4;i++)
 	{
-	//	hal.console->printf("val[%d] = %d \n",i,val[i]);
+		hal.console->printf("val[%d] = %d \n",i,int(val[i]));
 	}
 
 
