@@ -13,6 +13,7 @@ void loop();
 
 const AP_HAL::HAL& hal = AP_HAL::get_HAL();
 
+char cnt;
 /*
   setup one UART at 57600
  */
@@ -58,7 +59,13 @@ void loop(void)
   //  test_uart(hal.uartC, "uartC");
  //   test_uart(hal.uartD, "uartD");
  //   test_uart(hal.uartE, "uartE");
- hal.uartC->write(0xff);
+ for(cnt =0;cnt <256;cnt++)
+ 	{
+	 hal.uartC->write(0xff);
+
+
+ 	}
+
 
     // also do a raw printf() on some platforms, which prints to the
     // debug console
