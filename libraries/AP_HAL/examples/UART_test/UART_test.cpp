@@ -60,7 +60,7 @@ void loop(void)
  //   test_uart(hal.uartE, "uartE");
  for(cnt = 0; cnt <256;cnt++)
  	{
-		hal.uartC->write(char(cnt));
+	//	hal.uartC->write(char(cnt));
 
  }
  
