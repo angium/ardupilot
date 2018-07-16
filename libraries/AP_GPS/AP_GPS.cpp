@@ -600,16 +600,19 @@ void AP_GPS::update_instance(uint8_t instance)
 {
     if (_type[instance] == GPS_TYPE_HIL) {
         // in HIL, leave info alone
+        hal.console->printf("GPS_TYPE_HIL\n");
         return;
     }
     if (_type[instance] == GPS_TYPE_NONE) {
         // not enabled
+         hal.console->printf("not enabled\n");       
         state[instance].status = NO_GPS;
         state[instance].hdop = GPS_UNKNOWN_DOP;
         state[instance].vdop = GPS_UNKNOWN_DOP;
         return;
     }
     if (locked_ports & (1U<<instance)) {
+		         hal.console->printf("instance = %d\n",instance);    
         // the port is locked by another driver
         return;
     }
@@ -617,12 +620,14 @@ void AP_GPS::update_instance(uint8_t instance)
     if (drivers[instance] == nullptr || state[instance].status == NO_GPS) {
         // we don't yet know the GPS type of this one, or it has timed
         // out and needs to be re-initialised
+                 hal.console->printf("detect_instance\n");    
         detect_instance(instance);
         return;
     }
 
     if (_auto_config == GPS_AUTO_CONFIG_ENABLE) {
         send_blob_update(instance);
+	                 hal.console->printf("GPS_AUTO_CONFIG_ENABLE\n");   	
     }
 
     // we have an active driver for this instance
@@ -633,6 +638,7 @@ void AP_GPS::update_instance(uint8_t instance)
     // has expired, re-initialise the GPS. This will cause GPS
     // detection to run again
     bool data_should_be_logged = false;
+	
     if (!result) {
         if (tnow - timing[instance].last_message_time_ms > GPS_TIMEOUT_MS) {
             memset(&state[instance], 0, sizeof(state[instance]));
@@ -683,7 +689,8 @@ void AP_GPS::update_instance(uint8_t instance)
  */
 void AP_GPS::update(void)
 {
-    for (uint8_t i=0; i<GPS_MAX_RECEIVERS; i++) {
+	hal.console->printf("gps update\n");
+	for (uint8_t i=0; i<GPS_MAX_RECEIVERS; i++) {
         update_instance(i);
     }
 

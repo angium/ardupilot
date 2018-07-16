@@ -67,7 +67,7 @@ void loop()
 
     // Update GPS state based on possible bytes received from the module.
     gps.update();
-
+	
     // If new GPS data is received, output it's contents to the console
     // Here we rely on the time of the message in GPS class and the time of last message
     // saved in static variable last_msg_ms. When new message is received, the time

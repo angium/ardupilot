@@ -75,9 +75,7 @@ bool PX4_I2C::do_transfer(uint8_t address, const uint8_t *send, uint32_t send_le
 	set_address(address);
 	hal.console->printf("address = %d\n",address);
     if (!init_done) {
-		hal.console->printf("not init done\n");
         if (pthread_mutex_lock(&instance_lock) != 0) {
-			hal.console->printf("pthread_mutex_lock = %d\n",int(pthread_mutex_lock(&instance_lock)));
             return false;
         }
         init_done = true;
@@ -115,7 +113,6 @@ bool PX4_I2C::do_transfer(uint8_t address, const uint8_t *send, uint32_t send_le
         }
     } else {
         // combined transfer
-        hal.console->printf("combined transfer\n");
         if (transfer(send, send_len, recv, recv_len) != OK) {
             return false;
         }
