@@ -7,7 +7,7 @@
 #if HAL_OS_POSIX_IO
 #include <stdio.h>
 #endif
-//static int cnt = 0;
+//static char cnt = 0;
 void setup();
 void loop();
 
@@ -58,15 +58,19 @@ void loop(void)
   //  test_uart(hal.uartC, "uartC");
  //   test_uart(hal.uartD, "uartD");
  //   test_uart(hal.uartE, "uartE");
- 
- hal.uartC->write(0xff);
+ for(cnt = 0; cnt <8;cnt++)
+ 	{
+		hal.uartC->write(0xff>>i);
 
+ }
+ 
     // also do a raw printf() on some platforms, which prints to the
     // debug console
+    #if 0
 #if HAL_OS_POSIX_IO
     ::printf("Hello on debug console at %.3f seconds\n", (double)(AP_HAL::millis() * 0.001f));
 #endif
-
+#endif
     hal.scheduler->delay(100);
 }
 
