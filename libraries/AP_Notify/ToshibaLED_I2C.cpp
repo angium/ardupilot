@@ -95,7 +95,5 @@ void ToshibaLED_I2C::_timer(void)
     /* 4-bit for each color */
     uint8_t val[4] = { TOSHIBA_LED_PWM0, (uint8_t)(rgb.b >> 4),
                        (uint8_t)(rgb.g / 16), (uint8_t)(rgb.r / 16) };
-	int i;
-
     _dev->transfer(val, sizeof(val), nullptr, 0);
 }
