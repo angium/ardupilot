@@ -7,7 +7,7 @@
 #if HAL_OS_POSIX_IO
 #include <stdio.h>
 #endif
-static char cnt = 0;
+char cnt = 0;
 void setup();
 void loop();
 
@@ -62,7 +62,7 @@ void loop(void)
  	{
 		hal.uartC->write(char(cnt));
 
- }
+ 	}
  
     // also do a raw printf() on some platforms, which prints to the
     // debug console
