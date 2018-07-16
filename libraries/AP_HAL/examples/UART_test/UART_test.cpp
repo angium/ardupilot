@@ -7,7 +7,7 @@
 #if HAL_OS_POSIX_IO
 #include <stdio.h>
 #endif
-
+//static int cnt = 0;
 void setup();
 void loop();
 
@@ -35,10 +35,10 @@ void setup(void)
     hal.scheduler->delay(1000); //Ensure that the uartA can be initialized
 
     setup_uart(hal.uartA, "uartA");  // console
-    setup_uart(hal.uartB, "uartB");  // 1st GPS
+//    setup_uart(hal.uartB, "uartB");  // 1st GPS
     setup_uart(hal.uartC, "uartC");  // telemetry 1
-    setup_uart(hal.uartD, "uartD");  // telemetry 2
-    setup_uart(hal.uartE, "uartE");  // 2nd GPS
+//    setup_uart(hal.uartD, "uartD");  // telemetry 2
+//    setup_uart(hal.uartE, "uartE");  // 2nd GPS
 }
 
 static void test_uart(AP_HAL::UARTDriver *uart, const char *name)
@@ -54,10 +54,12 @@ static void test_uart(AP_HAL::UARTDriver *uart, const char *name)
 void loop(void)
 {
     test_uart(hal.uartA, "uartA");
-    test_uart(hal.uartB, "uartB");
-    test_uart(hal.uartC, "uartC");
-    test_uart(hal.uartD, "uartD");
-    test_uart(hal.uartE, "uartE");
+//    test_uart(hal.uartB, "uartB");
+  //  test_uart(hal.uartC, "uartC");
+ //   test_uart(hal.uartD, "uartD");
+ //   test_uart(hal.uartE, "uartE");
+ 
+ hal.uartC->write(0xff);
 
     // also do a raw printf() on some platforms, which prints to the
     // debug console
@@ -65,7 +67,7 @@ void loop(void)
     ::printf("Hello on debug console at %.3f seconds\n", (double)(AP_HAL::millis() * 0.001f));
 #endif
 
-    hal.scheduler->delay(1000);
+    hal.scheduler->delay(100);
 }
 
 AP_HAL_MAIN();
