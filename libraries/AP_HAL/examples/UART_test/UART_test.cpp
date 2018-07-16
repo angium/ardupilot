@@ -62,10 +62,11 @@ void loop(void)
 
     // also do a raw printf() on some platforms, which prints to the
     // debug console
+    #if 0
 #if HAL_OS_POSIX_IO
     ::printf("Hello on debug console at %.3f seconds\n", (double)(AP_HAL::millis() * 0.001f));
 #endif
-
+#endif
     hal.scheduler->delay(100);
 }
 
