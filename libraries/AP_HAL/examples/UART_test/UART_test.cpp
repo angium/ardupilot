@@ -7,7 +7,7 @@
 #if HAL_OS_POSIX_IO
 #include <stdio.h>
 #endif
-char cnt = 0;
+char cnt ;
 void setup();
 void loop();
 
