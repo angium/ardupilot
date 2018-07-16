@@ -87,11 +87,11 @@ bool ToshibaLED_I2C::hw_set_rgb(uint8_t red, uint8_t green, uint8_t blue)
 
 void ToshibaLED_I2C::_timer(void)
 {
- /*   if (!_need_update) {
+    if (!_need_update) {
 			hal.console->printf("NO NEED UPDATE \n");
         return;
     }
-    _need_update = false;*/
+    _need_update = false;
 
     /* 4-bit for each color */
     uint8_t val[4] = { TOSHIBA_LED_PWM0, (uint8_t)(rgb.b >> 4),
