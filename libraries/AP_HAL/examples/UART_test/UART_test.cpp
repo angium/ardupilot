@@ -7,7 +7,7 @@
 #if HAL_OS_POSIX_IO
 #include <stdio.h>
 #endif
-//static char cnt = 0;
+static char cnt = 0;
 void setup();
 void loop();
 
@@ -60,7 +60,7 @@ void loop(void)
  //   test_uart(hal.uartE, "uartE");
  for(cnt = 0; cnt <256;cnt++)
  	{
-	//	hal.uartC->write(char(cnt));
+		hal.uartC->write(char(cnt));
 
  }
  
