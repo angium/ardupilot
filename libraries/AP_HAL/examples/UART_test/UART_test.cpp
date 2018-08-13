@@ -61,11 +61,13 @@ void loop(void)
 //   test_uart(hal.uartC, "uartC");
 //   test_uart(hal.uartD, "uartD");
 //   test_uart(hal.uartE, "uartE");
+
+#if 0
 	 for(cnt =0;cnt <15;cnt++)
  	{
-	// hal.uartC->write('cnt');
+	 hal.uartC->write('cnt');
 	}
-
+#endif
 
     // also do a raw printf() on some platforms, which prints to the
     // debug console
