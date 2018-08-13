@@ -65,7 +65,7 @@ void loop(void)
 #if 1
 	 for(cnt =0;cnt <1000;cnt++)
  	{
-	 hal.uartC->write(cnt);
+	 hal.uartC->write("hello world");
 	}
 #endif
 
