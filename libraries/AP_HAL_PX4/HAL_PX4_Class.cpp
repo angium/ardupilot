@@ -234,6 +234,7 @@ void HAL_PX4::run(int argc, char * const argv[], Callbacks* callbacks) const
 {
     int i;
     const char *deviceA = UARTA_DEFAULT_DEVICE;
+	const char *deviceB = UARTB_DEFAULT_DEVICE;
     const char *deviceC = UARTC_DEFAULT_DEVICE;
     const char *deviceD = UARTD_DEFAULT_DEVICE;
     const char *deviceE = UARTE_DEFAULT_DEVICE;
@@ -258,6 +259,7 @@ void HAL_PX4::run(int argc, char * const argv[], Callbacks* callbacks) const
             }
 
             uartADriver.set_device_path(deviceA);
+            uartBDriver.set_device_path(deviceB);			
             uartCDriver.set_device_path(deviceC);
             uartDDriver.set_device_path(deviceD);
             uartEDriver.set_device_path(deviceE);
