@@ -80,6 +80,7 @@ const AP_Scheduler::Task Sub::scheduler_tasks[] = {
 #endif
 };
 
+
 constexpr int8_t Sub::_failsafe_priorities[5];
 
 void Sub::setup()
