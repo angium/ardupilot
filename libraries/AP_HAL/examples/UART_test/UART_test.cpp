@@ -54,7 +54,7 @@ static void test_uart(AP_HAL::UARTDriver *uart, const char *name)
 
 void loop(void)
 {
-//	char cnt;
+	char cnt;
 
 	 test_uart(hal.uartA, "uartA");
 //   test_uart(hal.uartB, "uartB");
@@ -62,10 +62,10 @@ void loop(void)
 //   test_uart(hal.uartD, "uartD");
 //   test_uart(hal.uartE, "uartE");
 
-#if 0
+#if 1
 	 for(cnt =0;cnt <15;cnt++)
  	{
-	 hal.uartC->write('cnt');
+	 hal.uartC->write(cnt);
 	}
 #endif
 
