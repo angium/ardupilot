@@ -56,12 +56,12 @@ void loop(void)
 {
 	char cnt;
 
-	test_uart(hal.uartA, "uartA");
+//	test_uart(hal.uartA, "uartA");
 //    test_uart(hal.uartB, "uartB");
   //  test_uart(hal.uartC, "uartC");
  //   test_uart(hal.uartD, "uartD");
  //   test_uart(hal.uartE, "uartE");
- for(cnt =0;cnt <0xf;cnt++)
+ for(cnt =0;cnt <0xff;cnt++)
  	{
 	 hal.uartC->write(cnt);
 
