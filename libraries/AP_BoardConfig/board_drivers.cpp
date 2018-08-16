@@ -276,7 +276,7 @@ void AP_BoardConfig::board_autodetect(void)
 void AP_BoardConfig::board_setup_uart()
 {
 #if AP_FEATURE_RTSCTS
-//    hal.uartC->set_flow_control((AP_HAL::UARTDriver::flow_control)state.ser1_rtscts.get());
+    hal.uartC->set_flow_control((AP_HAL::UARTDriver::flow_control)state.ser1_rtscts.get());
     if (hal.uartD != nullptr) {
         hal.uartD->set_flow_control((AP_HAL::UARTDriver::flow_control)state.ser2_rtscts.get());
     }
