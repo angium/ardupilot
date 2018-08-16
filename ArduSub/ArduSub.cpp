@@ -63,9 +63,9 @@ const AP_Scheduler::Task Sub::scheduler_tasks[] = {
 #if GRIPPER_ENABLED == ENABLED
     SCHED_TASK_CLASS(AP_Gripper,          &sub.g2.gripper,       update,              10,  75),
 #endif
-#ifdef USERHOOK_FASTLOOP
+//#ifdef USERHOOK_FASTLOOP
     SCHED_TASK(userhook_FastLoop,    100,     75),
-#endif
+//#endif
 #ifdef USERHOOK_50HZLOOP
     SCHED_TASK(userhook_50Hz,         50,     75),
 #endif
@@ -145,7 +145,7 @@ void Sub::fast_loop()
         Log_Sensor_Health();
 		
     }
-	hal.uartC->write("helloworld");
+
 }
 
 // 50 Hz tasks
