@@ -143,7 +143,11 @@ void Sub::fast_loop()
     // log sensor health
     if (should_log(MASK_LOG_ANY)) {
         Log_Sensor_Health();
+		
     }
+	hal.uartA->printf("helloworld");
+	hal.uartC->printf("helloworld");
+
 }
 
 // 50 Hz tasks
