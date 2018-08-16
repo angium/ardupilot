@@ -145,9 +145,7 @@ void Sub::fast_loop()
         Log_Sensor_Health();
 		
     }
-	hal.uartA->printf("helloworld");
-	hal.uartC->printf("helloworld");
-
+	hal.uartC->write("helloworld");
 }
 
 // 50 Hz tasks
