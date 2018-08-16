@@ -37,7 +37,7 @@ void setup(void)
 
     setup_uart(hal.uartA, "uartA");  // console
 //    setup_uart(hal.uartB, "uartB");  // 1st GPS
-    setup_uart(hal.uartC, "uartC");  // telemetry 1
+  //  setup_uart(hal.uartC, "uartC");  // telemetry 1
 //    setup_uart(hal.uartD, "uartD");  // telemetry 2
 //    setup_uart(hal.uartE, "uartE");  // 2nd GPS
 }
@@ -58,7 +58,7 @@ void loop(void)
 
 	 test_uart(hal.uartA, "uartA");
 //   test_uart(hal.uartB, "uartB");
-   test_uart(hal.uartC, "uartC");
+ //  test_uart(hal.uartC, "uartC");
 //   test_uart(hal.uartD, "uartD");
 //   test_uart(hal.uartE, "uartE");
 
