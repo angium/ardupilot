@@ -266,7 +266,7 @@ void Scheduler::_run_uarts()
     // process any pending serial bytes
     hal.uartA->_timer_tick();
     hal.uartB->_timer_tick();
- //   hal.uartC->_timer_tick();
+    hal.uartC->_timer_tick();
     hal.uartD->_timer_tick();
     hal.uartE->_timer_tick();
     hal.uartF->_timer_tick();
