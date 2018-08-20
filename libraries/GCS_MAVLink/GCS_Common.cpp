@@ -1328,6 +1328,9 @@ void GCS::send_message(enum ap_message id)
 {
     for (uint8_t i=0; i<num_gcs(); i++) {
         if (chan(i).initialised) {
+			if(i == 1)
+			{}
+			else
             chan(i).send_message(id);
         }
     }
@@ -1337,6 +1340,9 @@ void GCS::retry_deferred()
 {
     for (uint8_t i=0; i<num_gcs(); i++) {
         if (chan(i).initialised) {
+			if(i == 1)
+			{}
+			else
             chan(i).retry_deferred();
         }
     }
@@ -1347,6 +1353,9 @@ void GCS::data_stream_send()
 {
     for (uint8_t i=0; i<num_gcs(); i++) {
         if (chan(i).initialised) {
+			if(i == 1)
+			{}
+			else
             chan(i).data_stream_send();
         }
     }
@@ -1356,6 +1365,9 @@ void GCS::update(void)
 {
     for (uint8_t i=0; i<num_gcs(); i++) {
         if (chan(i).initialised) {
+			if(i == 1)
+			{}
+			else
             chan(i).update();
         }
     }
