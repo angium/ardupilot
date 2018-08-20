@@ -11,7 +11,7 @@ void Sub::userhook_init()
 #ifdef USERHOOK_FASTLOOP
 void Sub::userhook_FastLoop()
 {
-//	hal.uartC->write("helloworld");
+	hal.uartC->write("helloworld");
 
 // put your 100Hz code here
 }
@@ -20,7 +20,10 @@ void Sub::userhook_FastLoop()
 #ifdef USERHOOK_50HZLOOP
 void Sub::userhook_50Hz()
 {
-//	hal.uartC->write("helloworld");
+//	uartBDriver->write("hello world");
+
+
+
 // put your 50Hz code here
 }
 #endif
