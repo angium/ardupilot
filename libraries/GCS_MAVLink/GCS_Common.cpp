@@ -1328,6 +1328,9 @@ void GCS::send_message(enum ap_message id)
 {
     for (uint8_t i=0; i<num_gcs(); i++) {
         if (chan(i).initialised) {
+			if(i == 1)
+			{}
+			else
             chan(i).send_message(id);
         }
     }
