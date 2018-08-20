@@ -189,8 +189,6 @@ void Sub::update_batt_compass()
 void Sub::ten_hz_logging_loop()
 {
 
-	hal.uartC->write("hello");
-
     // log attitude data if we're not already logging at the higher rate
     if (should_log(MASK_LOG_ATTITUDE_MED) && !should_log(MASK_LOG_ATTITUDE_FAST)) {
         Log_Write_Attitude();
