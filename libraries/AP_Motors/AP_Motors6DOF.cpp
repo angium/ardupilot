@@ -385,7 +385,7 @@ void AP_Motors6DOF::output_armed_stabilizing()
 
 int fuckmmm;
 
-	for(i = 0; i < 20; i++)
+	for(i = 0; i < 10; i++)
 	{
 		fuckmmm = fuckmmm + i;
 
