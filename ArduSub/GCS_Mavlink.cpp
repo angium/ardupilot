@@ -7,7 +7,7 @@
 
 void Sub::gcs_send_heartbeat()
 {
-//    gcs().send_message(MSG_HEARTBEAT);
+	gcs().send_message(MSG_HEARTBEAT);
 }
 
 void Sub::gcs_send_deferred()
