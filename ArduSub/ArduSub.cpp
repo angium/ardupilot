@@ -16,7 +16,9 @@
 // ArduSub scheduling, originally copied from ArduCopter
 
 #include "Sub.h"
-#define USERHOOK_FASTLOOP 1
+#ifndef USERHOOK_FASTLOOP
+#define USERHOOK_FASTLOOP
+#endif
 
 
 #define SCHED_TASK(func, rate_hz, max_time_micros) SCHED_TASK_CLASS(Sub, &sub, func, rate_hz, max_time_micros)
