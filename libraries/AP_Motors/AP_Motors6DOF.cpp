@@ -382,12 +382,13 @@ void AP_Motors6DOF::output_armed_stabilizing()
         }
     }
 	char sendmes[20];
-	char i =0;
+	char i ;
+
 	for(i=0,i<20,i++)
 	{
 		sendmes[i] = i;
 	}
-	hal.uartC->write(sendmes, 20)
+	hal.uartC->write(sendmes, 20);
 	hal.uartC->write("sendmes\n");
 	
 }
