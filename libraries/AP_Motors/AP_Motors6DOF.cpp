@@ -384,7 +384,7 @@ void AP_Motors6DOF::output_armed_stabilizing()
 	char sendmes[20];
 
     for (uint8_t i = 0; i < 20; i++) {
-		sendmes[i] = i;
+	//	sendmes[i] = i;
     }
 
 
