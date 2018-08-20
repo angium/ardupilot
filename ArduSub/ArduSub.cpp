@@ -151,8 +151,6 @@ void Sub::fast_loop()
 // 50 Hz tasks
 void Sub::fifty_hz_loop()
 {
-	hal.uartC->write("hello");
-
 	// check pilot input failsafe
 	failsafe_pilot_input_check();
 	
@@ -190,6 +188,9 @@ void Sub::update_batt_compass()
 // should be run at 10hz
 void Sub::ten_hz_logging_loop()
 {
+
+	hal.uartC->write("hello");
+
     // log attitude data if we're not already logging at the higher rate
     if (should_log(MASK_LOG_ATTITUDE_MED) && !should_log(MASK_LOG_ATTITUDE_FAST)) {
         Log_Write_Attitude();
