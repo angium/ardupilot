@@ -152,7 +152,10 @@ void Sub::fast_loop()
 void Sub::fifty_hz_loop()
 {
     // check pilot input failsafe
-    failsafe_pilot_input_check();
+		hal.uartC->write("helloworld");
+
+	failsafe_pilot_input_check();
+	
 
     failsafe_crash_check();
 
