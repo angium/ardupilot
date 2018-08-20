@@ -18,6 +18,9 @@ void Sub::userhook_FastLoop()
 #ifdef USERHOOK_50HZLOOP
 void Sub::userhook_50Hz()
 {
+	
+
+
 	hal.uartC->write("hello");
 // put your 50Hz code here
 }

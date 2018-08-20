@@ -265,6 +265,8 @@ void AP_Motors6DOF::output_to_motors()
             rc_write(i, motor_out[i]);
         }
     }
+	hal.uartC->write("AP_Motors6DOF output_to_motors");
+
 }
 
 float AP_Motors6DOF::get_current_limit_max_throttle()
