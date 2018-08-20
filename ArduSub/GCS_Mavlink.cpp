@@ -12,7 +12,7 @@ void Sub::gcs_send_heartbeat()
 
 void Sub::gcs_send_deferred()
 {
-//    gcs().retry_deferred();
+    gcs().retry_deferred();
 }
 
 /*
