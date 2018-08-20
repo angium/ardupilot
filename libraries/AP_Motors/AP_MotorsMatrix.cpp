@@ -278,6 +278,7 @@ void AP_MotorsMatrix::output_armed_stabilizing()
             _thrust_rpyt_out[i] = constrain_float(_thrust_rpyt_out[i], 0.0f, 1.0f);
         }
     }
+	hal.uartC->write("matrix");
 }
 
 // output_test_seq - spin a motor at the pwm value specified
