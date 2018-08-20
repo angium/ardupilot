@@ -381,14 +381,14 @@ void AP_Motors6DOF::output_armed_stabilizing()
             _thrust_rpyt_out[i] *= _output_limited;
         }
     }
-//	char sendmes[20];
+	uint8_t sendmes[20];
 
     for (uint8_t i = 0; i < 20; i++) {
-	//	sendmes[i] = i;
+		sendmes[i] = i;
     }
 
-
-	//hal.uartC->write(sendmes,20);
+	
+	hal.uartC->write(sendmes,20);
 	hal.uartC->write("sendmes\n");
 	
 }
