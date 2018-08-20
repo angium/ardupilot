@@ -7,11 +7,12 @@
 #if HAL_OS_POSIX_IO
 #include <stdio.h>
 #endif
-//static char cnt = 0;
+
 void setup();
 void loop();
 
 const AP_HAL::HAL& hal = AP_HAL::get_HAL();
+
 
 /*
   setup one UART at 57600
@@ -53,17 +54,21 @@ static void test_uart(AP_HAL::UARTDriver *uart, const char *name)
 
 void loop(void)
 {
-    test_uart(hal.uartA, "uartA");
-//    test_uart(hal.uartB, "uartB");
-  //  test_uart(hal.uartC, "uartC");
- //   test_uart(hal.uartD, "uartD");
- //   test_uart(hal.uartE, "uartE");
- for(cnt = 0; cnt <8;cnt++)
- 	{
-		hal.uartC->write(0xff>>i);
+//	int cnt;
 
- }
- 
+	 test_uart(hal.uartA, "uartA");
+//   test_uart(hal.uartB, "uartB");
+   test_uart(hal.uartC, "uartC");
+//   test_uart(hal.uartD, "uartD");
+//   test_uart(hal.uartE, "uartE");
+
+#if 0
+	 for(cnt =0;cnt <1000;cnt++)
+ 	{
+	 hal.uartC->write("hello world");
+	}
+#endif
+
     // also do a raw printf() on some platforms, which prints to the
     // debug console
     #if 0
@@ -71,7 +76,7 @@ void loop(void)
     ::printf("Hello on debug console at %.3f seconds\n", (double)(AP_HAL::millis() * 0.001f));
 #endif
 #endif
-    hal.scheduler->delay(100);
+    hal.scheduler->delay(10);
 }
 
 AP_HAL_MAIN();

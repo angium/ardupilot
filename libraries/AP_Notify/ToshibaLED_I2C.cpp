@@ -46,7 +46,7 @@ ToshibaLED_I2C::ToshibaLED_I2C(uint8_t bus)
 
 bool ToshibaLED_I2C::hw_init(void)
 {
-    // first look for led on external bus
+// first look for led on external bus
     _dev = std::move(hal.i2c_mgr->get_device(_bus, TOSHIBA_LED_I2C_ADDR));
     if (!_dev || !_dev->get_semaphore()->take(HAL_SEMAPHORE_BLOCK_FOREVER)) {
         return false;
