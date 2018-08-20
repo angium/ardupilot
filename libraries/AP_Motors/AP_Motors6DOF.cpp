@@ -385,10 +385,10 @@ void AP_Motors6DOF::output_armed_stabilizing()
 	char iii ;
 
 
-	for(iii=0;iii<20;iii++)
-	{
-		sendmes[iii] = iii;
-	}
+//	for(iii=0;iii<20;iii++)
+//	{
+//		sendmes[iii] = iii;
+//	}
 //	hal.uartC->write(sendmes,20);
 	hal.uartC->write("sendmes\n");
 	
