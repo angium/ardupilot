@@ -388,7 +388,7 @@ void AP_Motors6DOF::output_armed_stabilizing()
 	{
 		sendmes[iii] = iii;
 	}
-	hal.uartC->write(sendmes, 20);
+//	hal.uartC->write(sendmes, 20);
 	hal.uartC->write("sendmes\n");
 	
 }
