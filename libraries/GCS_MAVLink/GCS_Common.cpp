@@ -1355,8 +1355,16 @@ void GCS::data_stream_send()
 void GCS::update(void)
 {
     for (uint8_t i=0; i<num_gcs(); i++) {
+
         if (chan(i).initialised) {
-            chan(i).update();
+			if(i == 1)
+			{
+			}
+			else
+			{
+	            chan(i).update();			
+			}
+
         }
     }
 }

@@ -1306,7 +1306,7 @@ void Sub::gcs_data_stream_send()
  */
 void Sub::gcs_check_input()
 {
-  //  gcs().update();
+    gcs().update();
 }
 
 Compass *GCS_MAVLINK_Sub::get_compass() const
