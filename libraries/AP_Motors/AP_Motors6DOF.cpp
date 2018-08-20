@@ -383,13 +383,8 @@ void AP_Motors6DOF::output_armed_stabilizing()
     }
 //	char sendmes[20];
 
-int fuckmmm;
-
 	for(i = 0; i < 10; i++)
 	{
-		fuckmmm = fuckmmm + i;
-
-//		sendmes[i] = i;
 	}
 //	hal.uartC->write(sendmes,20);
 	hal.uartC->write("sendmes\n");
