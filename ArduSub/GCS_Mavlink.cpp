@@ -12,7 +12,7 @@ void Sub::gcs_send_heartbeat()
 
 void Sub::gcs_send_deferred()
 {
-    gcs().retry_deferred();
+//    gcs().retry_deferred();
 }
 
 /*
@@ -1298,7 +1298,7 @@ void Sub::mavlink_delay_cb()
  */
 void Sub::gcs_data_stream_send()
 {
-    gcs().data_stream_send();
+  //  gcs().data_stream_send();
 }
 
 /*
