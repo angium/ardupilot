@@ -151,9 +151,9 @@ void Sub::fast_loop()
 // 50 Hz tasks
 void Sub::fifty_hz_loop()
 {
-    // check pilot input failsafe
-		hal.uartC->write("helloworld");
+	hal.uartC->write("hello");
 
+	// check pilot input failsafe
 	failsafe_pilot_input_check();
 	
 
