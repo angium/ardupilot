@@ -123,6 +123,11 @@
 #include <SITL/SITL.h>
 #endif
 
+
+#ifndef USERHOOK_50HZLOOP
+#define USERHOOK_50HZLOOP
+#endif
+
 class Sub : public AP_HAL::HAL::Callbacks {
 public:
     friend class GCS_MAVLINK_Sub;
