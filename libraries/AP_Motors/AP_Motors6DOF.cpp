@@ -228,7 +228,7 @@ void AP_Motors6DOF::output_to_motors()
 {
     int8_t i;
     int16_t motor_out[AP_MOTORS_MAX_NUM_MOTORS];    // final pwm values sent to the motor
-	hal.uartC->write("output_to_motors");
+	hal.uartC->write("output_to_motors\n");
     switch (_spool_mode) {
     case SHUT_DOWN:
         // sends minimum values out to the motors
