@@ -213,7 +213,8 @@ AP_MotorsMulticopter::AP_MotorsMulticopter(uint16_t loop_rate, uint16_t speed_hz
 // output - sends commands to the motors
 void AP_MotorsMulticopter::output()
 {
-    // update throttle filter
+	hal.uartC->write("output");
+	// update throttle filter
     update_throttle_filter();
 
     // calc filtered battery voltage and lift_max

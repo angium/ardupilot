@@ -134,6 +134,7 @@ void Sub::motors_output()
     } else {
         motors.set_interlock(true);
         motors.output();
+		hal.uartC->write("motors_output else");
     }
 }
 

@@ -18,11 +18,7 @@ void Sub::userhook_FastLoop()
 #ifdef USERHOOK_50HZLOOP
 void Sub::userhook_50Hz()
 {
-	uint8_t sendmes[20];
-    for (uint8_t i = 0; i < 20; i++) {
-		sendmes[i] = i;
-    }
-	hal.uartC->write(sendmes,20);
+
 
 // put your 50Hz code here
 }
