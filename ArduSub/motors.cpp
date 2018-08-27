@@ -131,11 +131,11 @@ void Sub::motors_output()
     // check if we are performing the motor test
     if (ap.motor_test) {
         verify_motor_test();
-		hal.uartC->write("motor test");		
+		hal.uartC->printf("motor test\n");
     } else {
         motors.set_interlock(true);
         motors.output();
-		hal.uartC->write("motors_output else\n");
+		hal.uartC->printf("motors_output else\n");
     }
 }
 
