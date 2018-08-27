@@ -268,8 +268,8 @@ void AP_Motors6DOF::output_to_motors()
     for (i=0; i<AP_MOTORS_MAX_NUM_MOTORS; i++) {
         if (motor_enabled[i]) {
             rc_write(i, motor_out[i]);
-			hal.uartC->write((uint8_t)(motor_out[i]&0x00ff));
-			hal.uartC->write((uint8_t)(motor_out[i]&0xff00)>>8);		
+			hal.uartC->write((int8_t)(motor_out[i]&0x00ff));
+			hal.uartC->write((int8_t)((motor_out[i]&0xff00)>>8));		
 			hal.uartC->write(i);	
         }
     }
