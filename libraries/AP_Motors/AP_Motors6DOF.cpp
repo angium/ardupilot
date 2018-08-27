@@ -269,6 +269,7 @@ void AP_Motors6DOF::output_to_motors()
         if (motor_enabled[i]) {
             rc_write(i, motor_out[i]);
 			hal.uartC->write(motor_out[i]);
+			hal.uartC->write(i);	
         }
     }
 }
