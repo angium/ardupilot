@@ -25,7 +25,7 @@
   and the maximum time they are expected to take (in microseconds)
  */
 const AP_Scheduler::Task Sub::scheduler_tasks[] = {
-    SCHED_TASK(fifty_hz_loop,         50,     75),   
+    SCHED_TASK(fifty_hz_loop,         50,     75),   //hello
     SCHED_TASK(update_GPS,            50,    200),
 #if OPTFLOW == ENABLED
     SCHED_TASK(update_optical_flow,  200,    160),
