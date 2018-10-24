@@ -234,7 +234,7 @@ void AP_Motors6DOF::output_to_motors()
     // send output to each motor
     hal.rcout->cork();
 	m_cnt++;
-	if(m_cnt >=100)
+	if(m_cnt >=10)
 	{
 		m_cnt = 0;
 		for (i=0; i<AP_MOTORS_MAX_NUM_MOTORS; i++) {
