@@ -174,7 +174,6 @@ void AP_Motors6DOF::add_motor_raw_6dof(int8_t motor_num, float roll_fac, float p
 void AP_Motors6DOF::output_min()
 {
     int8_t i;
-
     // set limits flags
     limit.roll_pitch = true;
     limit.yaw = true;
@@ -200,8 +199,8 @@ int16_t AP_Motors6DOF::calc_thrust_to_pwm(float thrust_in) const
 void AP_Motors6DOF::output_to_motors()
 {
     int8_t i;
+	int8_t m_cnt = 0;
     int16_t motor_out[AP_MOTORS_MAX_NUM_MOTORS];    // final pwm values sent to the motor
-	hal.console->printf("output_to_motors\n");
     switch (_spool_mode) {
     case SHUT_DOWN:
         // sends minimum values out to the motors
@@ -234,9 +233,18 @@ void AP_Motors6DOF::output_to_motors()
 
     // send output to each motor
     hal.rcout->cork();
+	m_cnt++;
+	if(m_cnt >=100)
+	{
+		m_cnt = 0;
+		for (i=0; i<AP_MOTORS_MAX_NUM_MOTORS; i++) {
+        if (motor_enabled[i]) {
+            hal.uartC->printf("motor_out[%d] = %d\n",i,motor_out[i]);
+        }
+    }
+	}
     for (i=0; i<AP_MOTORS_MAX_NUM_MOTORS; i++) {
         if (motor_enabled[i]) {
-			hal.uartC->printf("motor[%d]=%d\n",i,motor_out[i]);
             rc_write(i, motor_out[i]);
         }
     }
