@@ -38,7 +38,7 @@ const AP_Scheduler::Task Sub::scheduler_tasks[] = {
     SCHED_TASK(compass_accumulate,   100,    100),
     SCHED_TASK(barometer_accumulate,  50,     90),
     SCHED_TASK(update_notify,         50,     90),
-    SCHED_TASK(one_hz_loop,            1,    100),
+ //   SCHED_TASK(one_hz_loop,            1,    100),
     SCHED_TASK(gcs_check_input,      400,    180),
     SCHED_TASK(gcs_send_heartbeat,     1,    110),
     SCHED_TASK(gcs_send_deferred,     50,    550),
@@ -129,7 +129,11 @@ void Sub::perf_update(void)
 
 void Sub::loop()
 {
-    // wait for an INS sample
+
+	hal.console->printf("loop\n");
+
+
+	// wait for an INS sample
     ins.wait_for_sample();
 
     uint32_t timer = micros();
