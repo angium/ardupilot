@@ -129,10 +129,6 @@ void Sub::perf_update(void)
 
 void Sub::loop()
 {
-
-	hal.console->printf("loop\n");
-
-
 	// wait for an INS sample
     ins.wait_for_sample();
 
