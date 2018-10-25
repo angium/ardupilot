@@ -240,7 +240,7 @@ void AP_Motors6DOF::output_to_motors()
 		for (i=0; i<AP_MOTORS_MAX_NUM_MOTORS; i++) {
 			if (motor_enabled[i]) {
 			hal.uartD->write((int8_t)(motor_out[i]&&0xff));
-			hal.uartD->write((int8_t)(motor_out[i]&&0xff00)>>8));
+			hal.uartD->write((int8_t)((motor_out[i]&&0xff00)>>8));
             hal.uartC->printf("motor_out[%d] = %d\n",i,motor_out[i]);
 			}
 	    }
