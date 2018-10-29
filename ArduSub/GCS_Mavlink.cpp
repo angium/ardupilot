@@ -1983,6 +1983,7 @@ void Sub::gcs_data_stream_send(void)
 {
     for (uint8_t i=0; i<num_gcs; i++) {
         if (gcs_chan[i].initialised) {
+			hal.uartD->printf("gcs_data_stream_send/n");
             gcs_chan[i].data_stream_send();
         }
     }
