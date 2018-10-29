@@ -841,6 +841,7 @@ GCS_MAVLINK_Sub::data_stream_send(void)
 {
     if (waypoint_receiving) {
         // don't interfere with mission transfer
+        hal.uartD->printf("waypoint_receiving/n");
         return;
     }
 
