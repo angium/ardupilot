@@ -843,6 +843,7 @@ GCS_MAVLINK_Sub::data_stream_send(void)
         // don't interfere with mission transfer
         return;
     }
+	hal.uartD->printf("data_stream_send");
 
     if (!sub.in_mavlink_delay && !sub.motors.armed()) {
         handle_log_send(sub.DataFlash);
