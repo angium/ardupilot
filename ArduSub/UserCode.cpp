@@ -40,5 +40,6 @@ void Sub::userhook_SlowLoop()
 void Sub::userhook_SuperSlowLoop()
 {
     // put your 1Hz code here
+    hal.console->printf("helloworld");
 }
 #endif
