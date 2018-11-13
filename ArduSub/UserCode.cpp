@@ -43,5 +43,6 @@ void Sub::userhook_SuperSlowLoop()
     hal.console->printf("helloworld");
 	hal.uartA->printf("uartahelloworld");
 	hal.console->write("writehelloworld");
+	hal.uartC->printf("uartChelloworld");
 }
 #endif
