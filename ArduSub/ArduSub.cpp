@@ -72,9 +72,9 @@ const AP_Scheduler::Task Sub::scheduler_tasks[] = {
 #ifdef USERHOOK_SLOWLOOP
     SCHED_TASK(userhook_SlowLoop,     3.3,    75),
 #endif
-#ifdef USERHOOK_SUPERSLOWLOOP
+//#ifdef USERHOOK_SUPERSLOWLOOP
     SCHED_TASK(userhook_SuperSlowLoop, 1,   75),
-#endif
+//#endif
 };
 
 
