@@ -49,6 +49,7 @@ void SchedTest::setup(void)
 	//serial_manager.init_console();
 
 	AP_BoardConfig{}.init();
+	hal.uartA->begin(115200, 128, 256);
 
     ins.init(scheduler.get_loop_rate_hz());
 
@@ -62,10 +63,6 @@ void SchedTest::loop(void)
     	hal.console->printf("console loop");
     	hal.uartA->printf("uartA loop");	
 
-    	hal.uartB->printf("uartB loop");	
-    	hal.uartC->printf("uartC loop");	
-    	hal.uartD->printf("uartD loop");	
-    	hal.uartE->printf("uartE loop");
     ins.wait_for_sample();
 
     // tell the scheduler one tick has passed
