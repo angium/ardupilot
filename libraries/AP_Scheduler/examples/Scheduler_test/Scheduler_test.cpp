@@ -46,7 +46,9 @@ const AP_Scheduler::Task SchedTest::scheduler_tasks[] = {
 void SchedTest::setup(void)
 {
 
-    AP_BoardConfig{}.init();
+	//serial_manager.init_console();
+
+	AP_BoardConfig{}.init();
 
     ins.init(scheduler.get_loop_rate_hz());
 
@@ -57,6 +59,13 @@ void SchedTest::setup(void)
 void SchedTest::loop(void)
 {
     // wait for an INS sample
+    	hal.console->printf("console loop");
+    	hal.uartA->printf("uartA loop");	
+
+    	hal.uartB->printf("uartB loop");	
+    	hal.uartC->printf("uartC loop");	
+    	hal.uartD->printf("uartD loop");	
+    	hal.uartE->printf("uartE loop");
     ins.wait_for_sample();
 
     // tell the scheduler one tick has passed
@@ -80,7 +89,8 @@ void SchedTest::ins_update(void)
  */
 void SchedTest::one_hz_print(void)
 {
-    hal.console->printf("one_hz: t=%lu\n", (unsigned long)AP_HAL::millis());
+//	hal.
+	hal.console->printf("one_hz: t=%lu\n", (unsigned long)AP_HAL::millis());
 }
 
 /*
