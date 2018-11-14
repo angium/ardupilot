@@ -216,6 +216,8 @@ void AP_MotorsMulticopter::output()
     thrust_compensation();
     
     // convert rpy_thrust values to pwm
+
+
     output_to_motors();
 };
 

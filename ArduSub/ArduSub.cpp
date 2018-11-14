@@ -79,16 +79,8 @@ const AP_Scheduler::Task Sub::scheduler_tasks[] = {
 #endif
 };
 
-#ifdef USERHOOK_50HZLOOP
-void Sub::userhook_50Hz()
-{
-    // put your 50Hz code here
-    hal.console->printf("helloworld");
-	hal.uartA->printf("uartahelloworld");
-	hal.console->write("writehelloworld");
-	hal.uartC->printf("uartChelloworld");
-}
-#endif
+
+
 
 void Sub::setup()
 {

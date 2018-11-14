@@ -14,6 +14,13 @@ void Sub::userhook_FastLoop()
     // put your 100Hz code here
 }
 #endif
+#ifdef USERHOOK_50HZLOOP
+void Sub::userhook_50Hz()
+{
+    // put your 50Hz code here
+
+}
+#endif
 
 
 
