@@ -17,12 +17,16 @@
 
 #include "Sub.h"
 
+
+#ifndef USERHOOK_50HZLOOP
+
+#define USERHOOK_50HZLOOP
+
+#endif
+
 #define SCHED_TASK(func, rate_hz, max_time_micros) SCHED_TASK_CLASS(Sub, &sub, func, rate_hz, max_time_micros)
 
-//#ifndef USERHOOK_SUPERSLOWLOOP
 
-//#define USERHOOK_SUPERSLOWLOOP
-//#endif
 
 /*
   scheduler table for fast CPUs - all regular tasks apart from the fast_loop()
