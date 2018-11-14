@@ -41,6 +41,16 @@ const AP_Scheduler::Task SchedTest::scheduler_tasks[] = {
     SCHED_TASK(one_hz_print,            1,   1000),
     SCHED_TASK(five_second_call,      0.2,   1800),
 };
+static void setup_uart(AP_HAL::UARTDriver *uart, const char *name)
+{
+	hal.scheduler->delay(1000); //Ensure that the uartA can be initialized
+
+	if (uart == nullptr) {
+		// that UART doesn't exist on this platform
+		return;
+	}
+	uart->begin(57600);
+}
 
 
 void SchedTest::setup(void)
@@ -49,8 +59,9 @@ void SchedTest::setup(void)
 	 hal.scheduler->delay(1000); //Ensure that the uartA can be initialized
 
 	AP_BoardConfig{}.init();
-	hal.uartA->begin(115200);
-	hal.uartD->begin(115200, 128, 512);
+    test_uart(hal.uartA, "uartA");
+    test_uart(hal.uartD, "uartD");
+
 
     ins.init(scheduler.get_loop_rate_hz());
 
