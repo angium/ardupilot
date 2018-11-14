@@ -30,7 +30,9 @@ void Sub::mainloop_failsafe_check()
 {
     uint32_t tnow = AP_HAL::micros();
 
-    if (mainLoop_count != failsafe_last_mainLoop_count) {
+	hal.console->printf("failsafe_check\n");
+
+	if (mainLoop_count != failsafe_last_mainLoop_count) {
         // the main loop is running, all is OK
         failsafe_last_mainLoop_count = mainLoop_count;
         failsafe_last_timestamp = tnow;

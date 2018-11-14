@@ -1922,6 +1922,7 @@ void Sub::mavlink_delay_cb()
 {
     static uint32_t last_1hz, last_50hz, last_5s;
     if (!gcs_chan[0].initialised || in_mavlink_delay) {
+		hal.console->printf("in mavlink_delay_cb\n");
         return;
     }
 
