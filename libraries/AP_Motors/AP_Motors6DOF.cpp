@@ -246,6 +246,7 @@ void AP_Motors6DOF::output_to_motors()
 //	    }
 	//	hal.uartD->write(0x0d);
 	//	hal.uartD->write(0x0a);		
+
 	//}
     for (i=0; i<AP_MOTORS_MAX_NUM_MOTORS; i++) {
         if (motor_enabled[i]) {
