@@ -46,7 +46,7 @@ const AP_Scheduler::Task SchedTest::scheduler_tasks[] = {
 void SchedTest::setup(void)
 {
 
-//	 hal.scheduler->delay(1000); //Ensure that the uartA can be initialized
+	 hal.scheduler->delay(1000); //Ensure that the uartA can be initialized
 
 	AP_BoardConfig{}.init();
 	hal.uartA->begin(115200);
