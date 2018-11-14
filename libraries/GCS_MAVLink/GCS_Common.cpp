@@ -1038,6 +1038,7 @@ GCS_MAVLINK::update(run_cli_fn run_cli)
     mavlink_message_t msg;
     mavlink_status_t status;
     status.packet_rx_drop_count = 0;
+	hal.console->printf("packetReceived\n");
 
     // process received bytes
     uint16_t nbytes = comm_get_available(chan);
@@ -1060,7 +1061,7 @@ GCS_MAVLINK::update(run_cli_fn run_cli)
                 }
             }
         }
-		hal.console->printf("packetReceived\n");
+
 
         // Try to get a new message
         if (mavlink_parse_char(chan, c, &msg, &status)) {
