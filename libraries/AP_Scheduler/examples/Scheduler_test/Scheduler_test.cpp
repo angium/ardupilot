@@ -50,7 +50,7 @@ void SchedTest::setup(void)
 
 	AP_BoardConfig{}.init();
 	hal.uartA->begin(115200);
-	hal.uartD->begin(115200);
+	hal.uartD->begin(115200, 128, 512);
 
     ins.init(scheduler.get_loop_rate_hz());
 
