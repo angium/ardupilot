@@ -19,8 +19,11 @@
 
 #define SCHED_TASK(func, rate_hz, max_time_micros) SCHED_TASK_CLASS(Sub, &sub, func, rate_hz, max_time_micros)
 
+#ifndef USERHOOK_SUPERSLOWLOOP
 
-#define USERHOOK_SUPERSLOWLOOP 1
+#define USERHOOK_SUPERSLOWLOOP
+#endif
+
 /*
   scheduler table for fast CPUs - all regular tasks apart from the fast_loop()
   should be listed here, along with how often they should be called (in hz)
