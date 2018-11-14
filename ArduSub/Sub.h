@@ -81,6 +81,11 @@
 #include "Parameters.h"
 #include "AP_Arming_Sub.h"
 
+
+#ifndef USERHOOK_50HZLOOP
+#define USERHOOK_50HZLOOP
+#endif
+
 // libraries which are dependent on #defines in defines.h and/or config.h
 #if OPTFLOW == ENABLED
 #include <AP_OpticalFlow/AP_OpticalFlow.h>     // Optical Flow library
