@@ -20,7 +20,7 @@
 #define SCHED_TASK(func, rate_hz, max_time_micros) SCHED_TASK_CLASS(Sub, &sub, func, rate_hz, max_time_micros)
 
 
-#define USERHOOK_SUPERSLOWLOOP
+#define USERHOOK_SUPERSLOWLOOP 1
 /*
   scheduler table for fast CPUs - all regular tasks apart from the fast_loop()
   should be listed here, along with how often they should be called (in hz)
@@ -47,7 +47,7 @@ const AP_Scheduler::Task Sub::scheduler_tasks[] = {
     SCHED_TASK(gcs_data_stream_send,  50,    550),
     SCHED_TASK(update_mount,          50,     75),
 #if CAMERA == ENABLED
-    SCHED_TASK(update_trigger,        50,     75),
+    SCHED_TASK(update_trigger,        50,     75), //c6e359  a365c7
 #endif
     SCHED_TASK(ten_hz_logging_loop,   10,    350),
     SCHED_TASK(twentyfive_hz_logging, 25,    110),
