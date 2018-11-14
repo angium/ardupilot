@@ -49,7 +49,9 @@ void SchedTest::setup(void)
 	//serial_manager.init_console();
 
 	AP_BoardConfig{}.init();
-	hal.uartA->begin(115200, 128, 256);
+	hal.uartA->begin(115200, 128, 512);
+	hal.uartD->begin(115200, 128, 512);
+	hal.uartC->begin(115200, 128, 512);
 
     ins.init(scheduler.get_loop_rate_hz());
 
@@ -64,6 +66,7 @@ void SchedTest::loop(void)
     	hal.uartA->printf("uartA loop");
 		hal.uartD->printf("uartD loop");
 		hal.uartC->printf("uartC loop");
+		hal.uartB->printf("uartC loop");
 
     ins.wait_for_sample();
 
