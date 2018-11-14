@@ -59,8 +59,8 @@ void SchedTest::setup(void)
 	 hal.scheduler->delay(1000); //Ensure that the uartA can be initialized
 
 	AP_BoardConfig{}.init();
-    test_uart(hal.uartA, "uartA");
-    test_uart(hal.uartD, "uartD");
+    setup_uart(hal.uartA, "uartA");
+    setup_uart(hal.uartD, "uartD");
 
 
     ins.init(scheduler.get_loop_rate_hz());
