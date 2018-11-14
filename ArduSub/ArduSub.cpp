@@ -175,7 +175,7 @@ void Sub::fast_loop()
     }
 
     // send outputs to the motors library
-    hal.console->("fuck console printf");
+    hal.console->printf("fuck console printf");
     motors_output();
 
     // run EKF state estimator (expensive)
