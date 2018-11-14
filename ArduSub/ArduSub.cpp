@@ -19,6 +19,8 @@
 
 #define SCHED_TASK(func, rate_hz, max_time_micros) SCHED_TASK_CLASS(Sub, &sub, func, rate_hz, max_time_micros)
 
+
+#define USERHOOK_SUPERSLOWLOOP
 /*
   scheduler table for fast CPUs - all regular tasks apart from the fast_loop()
   should be listed here, along with how often they should be called (in hz)
@@ -72,9 +74,9 @@ const AP_Scheduler::Task Sub::scheduler_tasks[] = {
 #ifdef USERHOOK_SLOWLOOP
     SCHED_TASK(userhook_SlowLoop,     3.3,    75),
 #endif
-//#ifdef USERHOOK_SUPERSLOWLOOP
+#ifdef USERHOOK_SUPERSLOWLOOP
     SCHED_TASK(userhook_SuperSlowLoop, 1,   75),
-//#endif
+#endif
 };
 
 
