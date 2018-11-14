@@ -990,8 +990,12 @@ void GCS_MAVLINK_Sub::handle_change_alt_request(AP_Mission::Mission_Command &cmd
 void GCS_MAVLINK_Sub::handleMessage(mavlink_message_t* msg)
 {
     uint8_t result = MAV_RESULT_FAILED;         // assume failure.  Each messages id is responsible for return ACK or NAK if required
+	uint8_t temp111;
 
+	temp111 = msg->msgid ; 
     switch (msg->msgid) {
+
+		hal.console->printf("handlemessage msg =% d \n",temp111);
 
     case MAVLINK_MSG_ID_HEARTBEAT: {    // MAV ID: 0
         // We keep track of the last time we received a heartbeat from our GCS for failsafe purposes
@@ -2001,7 +2005,7 @@ void Sub::gcs_check_input(void)
             gcs_chan[i].update(NULL);
         }
     }
-	hal.console->printf("gcs_check_input\n");
+
 }
 
 void Sub::gcs_send_text(MAV_SEVERITY severity, const char *str)
