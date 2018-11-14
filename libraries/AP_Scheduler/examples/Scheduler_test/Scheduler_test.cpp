@@ -61,7 +61,9 @@ void SchedTest::loop(void)
 {
     // wait for an INS sample
     	hal.console->printf("console loop");
-    	hal.uartA->printf("uartA loop");	
+    	hal.uartA->printf("uartA loop");
+		hal.uartD->printf("uartD loop");
+		hal.uartC->printf("uartC loop");
 
     ins.wait_for_sample();
 
