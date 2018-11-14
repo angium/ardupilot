@@ -1060,6 +1060,7 @@ GCS_MAVLINK::update(run_cli_fn run_cli)
                 }
             }
         }
+		hal.console->printf("packetReceived\n");
 
         // Try to get a new message
         if (mavlink_parse_char(chan, c, &msg, &status)) {
