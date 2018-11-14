@@ -57,7 +57,7 @@ void Sub::init_ardupilot()
     // initialise notify system
     notify.init(true);
 
-    // initialise battery monitor
+    // initialise battery monitor//
     battery.init();
 
     barometer.init();
