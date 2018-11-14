@@ -92,6 +92,7 @@ void AP_Scheduler::run(uint32_t time_available)
 {
     uint32_t run_started_usec = AP_HAL::micros();
     uint32_t now = run_started_usec;
+	hal.console->printf("_debug = %d\n",_debug);
 
     if (_debug > 3 && _perf_counters == nullptr) {
         _perf_counters = new AP_HAL::Util::perf_counter_t[_num_tasks];
