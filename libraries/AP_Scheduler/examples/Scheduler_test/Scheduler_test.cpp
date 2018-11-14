@@ -46,12 +46,11 @@ const AP_Scheduler::Task SchedTest::scheduler_tasks[] = {
 void SchedTest::setup(void)
 {
 
-	 hal.scheduler->delay(1000); //Ensure that the uartA can be initialized
+//	 hal.scheduler->delay(1000); //Ensure that the uartA can be initialized
 
 	AP_BoardConfig{}.init();
 	hal.uartA->begin(115200);
 	hal.uartD->begin(115200);
-	hal.uartC->begin(115200);
 
     ins.init(scheduler.get_loop_rate_hz());
 
@@ -62,11 +61,8 @@ void SchedTest::setup(void)
 void SchedTest::loop(void)
 {
     // wait for an INS sample
-    	hal.console->printf("console loop");
-    	hal.uartA->printf("uartA loop");
-		hal.uartD->printf("uartD loop");
-		hal.uartC->printf("uartC loop");
-		hal.uartB->printf("uartC loop");
+   // 	hal.console->printf("console loop");
+
 
     ins.wait_for_sample();
 
