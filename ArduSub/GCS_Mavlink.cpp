@@ -994,6 +994,8 @@ void GCS_MAVLINK_Sub::handleMessage(mavlink_message_t* msg)
 
 	hal.uartD->printf("handlemessage\n");
 
+	hal.uartD->printf("msgid = %d \n",msg->msgid);
+
     switch (msg->msgid) {
 
 		
@@ -2008,6 +2010,7 @@ void Sub::gcs_check_input(void)
     }
 
 }
+
 
 void Sub::gcs_send_text(MAV_SEVERITY severity, const char *str)
 {
