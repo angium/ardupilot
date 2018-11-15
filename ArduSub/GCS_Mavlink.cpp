@@ -2011,6 +2011,7 @@ void Sub::gcs_check_input(void)
 
 }
 
+
 void Sub::gcs_send_text(MAV_SEVERITY severity, const char *str)
 {
     gcs().send_statustext(severity, 0xFF, str);
