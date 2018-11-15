@@ -1038,7 +1038,7 @@ GCS_MAVLINK::update(run_cli_fn run_cli)
     mavlink_message_t msg;
     mavlink_status_t status;
     status.packet_rx_drop_count = 0;
-//	hal.console->printf("packetReceived\n");
+	hal.uartD->printf("update\n");
 
     // process received bytes
     uint16_t nbytes = comm_get_available(chan);

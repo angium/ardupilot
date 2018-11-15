@@ -841,7 +841,7 @@ GCS_MAVLINK_Sub::data_stream_send(void)
 {
     if (waypoint_receiving) {
         // don't interfere with mission transfer
-        hal.uartD->printf("waypoint_receiving/n");
+     //   hal.uartD->printf("waypoint_receiving/n");
         return;
     }
 
@@ -857,25 +857,26 @@ GCS_MAVLINK_Sub::data_stream_send(void)
         }
         if (stream_trigger(STREAM_PARAMS)) {
             send_message(MSG_NEXT_PARAM);
-			hal.uartD->printf("send_message msg_next_param/n");
+	//		hal.uartD->printf("send_message msg_next_param/n");
         }
         // don't send anything else at the same time as parameters
         return;
     }
 
     if (sub.gcs_out_of_time) {
-		hal.uartD->printf("out_of_time return/n");
+	//	hal.uartD->printf("out_of_time return/n");
+	//hal.uartD->printf("return/n");
         return;
     }
 
     if (sub.in_mavlink_delay) {
         // don't send any other stream types while in the delay callback
-        hal.uartD->printf("in_mavlink_delay return/n");
+    //    hal.uartD->printf("in_mavlink_delay return/n");
         return;
     }
 
     if (stream_trigger(STREAM_RAW_SENSORS)) {
-        hal.uartD->printf("STREAM_RAW_SENSORS return/n");		
+   //     hal.uartD->printf("STREAM_RAW_SENSORS return/n");		
         send_message(MSG_RAW_IMU1);
         send_message(MSG_RAW_IMU2);
         send_message(MSG_RAW_IMU3);
@@ -886,7 +887,7 @@ GCS_MAVLINK_Sub::data_stream_send(void)
     }
 
     if (stream_trigger(STREAM_EXTENDED_STATUS)) {
-        hal.uartD->printf("STREAM_EXTENDED_STATUS return/n");			
+    //    hal.uartD->printf("STREAM_EXTENDED_STATUS return/n");			
         send_message(MSG_EXTENDED_STATUS1);
         send_message(MSG_EXTENDED_STATUS2);
         send_message(MSG_CURRENT_WAYPOINT);
@@ -991,7 +992,7 @@ void GCS_MAVLINK_Sub::handleMessage(mavlink_message_t* msg)
 {
     uint8_t result = MAV_RESULT_FAILED;         // assume failure.  Each messages id is responsible for return ACK or NAK if required
 
-	hal.uartD->printf("handlemessage");
+	hal.uartD->printf("handlemessage\n");
 
     switch (msg->msgid) {
 
@@ -1926,7 +1927,7 @@ void Sub::mavlink_delay_cb()
 {
     static uint32_t last_1hz, last_50hz, last_5s;
     if (!gcs_chan[0].initialised || in_mavlink_delay) {
-		hal.console->printf("in mavlink_delay_cb\n");
+
         return;
     }
 
