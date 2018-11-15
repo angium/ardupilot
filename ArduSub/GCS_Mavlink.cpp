@@ -992,10 +992,10 @@ void GCS_MAVLINK_Sub::handleMessage(mavlink_message_t* msg)
     uint8_t result = MAV_RESULT_FAILED;         // assume failure.  Each messages id is responsible for return ACK or NAK if required
 	uint8_t temp111;
 
-	temp111 = msg->msgid ; 
+	hal.console->printf("handlemessage");
     switch (msg->msgid) {
 
-		hal.console->printf("handlemessage msg =% d \n",temp111);
+		
 
     case MAVLINK_MSG_ID_HEARTBEAT: {    // MAV ID: 0
         // We keep track of the last time we received a heartbeat from our GCS for failsafe purposes

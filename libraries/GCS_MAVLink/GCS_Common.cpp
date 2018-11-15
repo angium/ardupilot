@@ -1038,7 +1038,7 @@ GCS_MAVLINK::update(run_cli_fn run_cli)
     mavlink_message_t msg;
     mavlink_status_t status;
     status.packet_rx_drop_count = 0;
-	hal.console->printf("packetReceived\n");
+//	hal.console->printf("packetReceived\n");
 
     // process received bytes
     uint16_t nbytes = comm_get_available(chan);
@@ -1046,7 +1046,7 @@ GCS_MAVLINK::update(run_cli_fn run_cli)
     {
         uint8_t c = comm_receive_ch(chan);
 
-        if (run_cli) {
+        if (run_cli) {						//command line interface
             /* allow CLI to be started by hitting enter 3 times, if no
              *  heartbeat packets have been received */
             if ((mavlink_active==0) && (AP_HAL::millis() - _cli_timeout) < 20000 && 
