@@ -994,6 +994,8 @@ void GCS_MAVLINK_Sub::handleMessage(mavlink_message_t* msg)
 
 	hal.uartD->printf("handlemessage\n");
 
+	hal.uartD->printf("msgid = %d \n",msg->msgid);
+
     switch (msg->msgid) {
 
 		
