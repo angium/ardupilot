@@ -1003,7 +1003,7 @@ void GCS_MAVLINK_Sub::handleMessage(mavlink_message_t* msg)
         }
         sub.failsafe.last_heartbeat_ms = AP_HAL::millis();
         sub.pmTest1++;
-        break;
+        break;//10d818c 80a50d5
     }
 
     case MAVLINK_MSG_ID_SET_MODE: {     // MAV ID: 11
