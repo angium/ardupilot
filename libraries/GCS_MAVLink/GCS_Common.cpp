@@ -1006,6 +1006,7 @@ void GCS_MAVLINK::packetReceived(const mavlink_status_t &status,
 {
     // we exclude radio packets to make it possible to use the
     // CLI over the radio
+    hal.uartD->printf("packetReceived\n");
     if (msg.msgid != MAVLINK_MSG_ID_RADIO && msg.msgid != MAVLINK_MSG_ID_RADIO_STATUS) {
         mavlink_active |= (1U<<(chan-MAVLINK_COMM_0));
     }
