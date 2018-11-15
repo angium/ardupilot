@@ -1027,6 +1027,8 @@ void GCS_MAVLINK::packetReceived(const mavlink_status_t &status,
     }
     if (routing.check_and_forward(chan, &msg) &&
         accept_packet(status, msg)) {
+
+		hal.uartD->printf("handleMessage\n");
         handleMessage(&msg);
     }
 }
@@ -1038,10 +1040,12 @@ GCS_MAVLINK::update(run_cli_fn run_cli)
     mavlink_message_t msg;
     mavlink_status_t status;
     status.packet_rx_drop_count = 0;
-	hal.uartD->printf("update\n");
+
 
     // process received bytes
     uint16_t nbytes = comm_get_available(chan);
+
+	hal.uartD->printf("nbytes = %d\n",nbytes);	
     for (uint16_t i=0; i<nbytes; i++)
     {
         uint8_t c = comm_receive_ch(chan);
