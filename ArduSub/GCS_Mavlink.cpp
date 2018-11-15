@@ -1944,7 +1944,6 @@ void Sub::mavlink_delay_cb()
     if (tnow - last_50hz > 20) {
         last_50hz = tnow;
         gcs_check_input();
-		hal.console->printf("behind gcs_check_input");
         gcs_data_stream_send();
         gcs_send_deferred();
         notify.update();

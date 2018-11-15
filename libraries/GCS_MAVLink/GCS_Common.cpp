@@ -1006,11 +1006,8 @@ void GCS_MAVLINK::packetReceived(const mavlink_status_t &status,
 {
     // we exclude radio packets to make it possible to use the
     // CLI over the radio
-    hal.uartD->printf("packetReceived\n");
     if (msg.msgid != MAVLINK_MSG_ID_RADIO && msg.msgid != MAVLINK_MSG_ID_RADIO_STATUS) {
-		hal.uartD->printf("msgid\n");
-
-		mavlink_active |= (1U<<(chan-MAVLINK_COMM_0));
+        mavlink_active |= (1U<<(chan-MAVLINK_COMM_0));
     }
     if (!(status.flags & MAVLINK_STATUS_FLAG_IN_MAVLINK1) &&
         (status.flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) &&
@@ -1019,7 +1016,6 @@ void GCS_MAVLINK::packetReceived(const mavlink_status_t &status,
         // if we receive any MAVLink2 packets on a connection
         // currently sending MAVLink1 then switch to sending
         // MAVLink2
-        	hal.uartD->printf("flags\n");
         mavlink_status_t *cstatus = mavlink_get_channel_status(chan);
         if (cstatus != nullptr) {
             cstatus->flags &= ~MAVLINK_STATUS_FLAG_OUT_MAVLINK1;
@@ -1031,8 +1027,6 @@ void GCS_MAVLINK::packetReceived(const mavlink_status_t &status,
     }
     if (routing.check_and_forward(chan, &msg) &&
         accept_packet(status, msg)) {
-
-		hal.uartD->printf("handleMessage\n");
         handleMessage(&msg);
     }
 }
@@ -1045,16 +1039,13 @@ GCS_MAVLINK::update(run_cli_fn run_cli)
     mavlink_status_t status;
     status.packet_rx_drop_count = 0;
 
-
     // process received bytes
     uint16_t nbytes = comm_get_available(chan);
-
-	hal.uartD->printf("nbytes = %d\n",nbytes);	
     for (uint16_t i=0; i<nbytes; i++)
     {
         uint8_t c = comm_receive_ch(chan);
 
-        if (run_cli) {						//command line interface
+        if (run_cli) {
             /* allow CLI to be started by hitting enter 3 times, if no
              *  heartbeat packets have been received */
             if ((mavlink_active==0) && (AP_HAL::millis() - _cli_timeout) < 20000 && 
@@ -1069,7 +1060,6 @@ GCS_MAVLINK::update(run_cli_fn run_cli)
                 }
             }
         }
-
 
         // Try to get a new message
         if (mavlink_parse_char(chan, c, &msg, &status)) {
