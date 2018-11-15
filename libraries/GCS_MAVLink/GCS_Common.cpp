@@ -1008,7 +1008,9 @@ void GCS_MAVLINK::packetReceived(const mavlink_status_t &status,
     // CLI over the radio
     hal.uartD->printf("packetReceived\n");
     if (msg.msgid != MAVLINK_MSG_ID_RADIO && msg.msgid != MAVLINK_MSG_ID_RADIO_STATUS) {
-        mavlink_active |= (1U<<(chan-MAVLINK_COMM_0));
+		hal.uartD->printf("msgid\n");
+
+		mavlink_active |= (1U<<(chan-MAVLINK_COMM_0));
     }
     if (!(status.flags & MAVLINK_STATUS_FLAG_IN_MAVLINK1) &&
         (status.flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) &&
@@ -1017,6 +1019,7 @@ void GCS_MAVLINK::packetReceived(const mavlink_status_t &status,
         // if we receive any MAVLink2 packets on a connection
         // currently sending MAVLink1 then switch to sending
         // MAVLink2
+        	hal.uartD->printf("flags\n");
         mavlink_status_t *cstatus = mavlink_get_channel_status(chan);
         if (cstatus != nullptr) {
             cstatus->flags &= ~MAVLINK_STATUS_FLAG_OUT_MAVLINK1;
