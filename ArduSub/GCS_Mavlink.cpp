@@ -841,7 +841,7 @@ GCS_MAVLINK_Sub::data_stream_send(void)
 {
     if (waypoint_receiving) {
         // don't interfere with mission transfer
-        hal.uartD->printf("waypoint_receiving/n");
+
         return;
     }
 
@@ -857,25 +857,25 @@ GCS_MAVLINK_Sub::data_stream_send(void)
         }
         if (stream_trigger(STREAM_PARAMS)) {
             send_message(MSG_NEXT_PARAM);
-			hal.uartD->printf("send_message msg_next_param/n");
+
         }
         // don't send anything else at the same time as parameters
         return;
     }
 
     if (sub.gcs_out_of_time) {
-		hal.uartD->printf("out_of_time return/n");
+
         return;
     }
 
     if (sub.in_mavlink_delay) {
         // don't send any other stream types while in the delay callback
-        hal.uartD->printf("in_mavlink_delay return/n");
+
         return;
     }
 
     if (stream_trigger(STREAM_RAW_SENSORS)) {
-        hal.uartD->printf("STREAM_RAW_SENSORS return/n");		
+	
         send_message(MSG_RAW_IMU1);
         send_message(MSG_RAW_IMU2);
         send_message(MSG_RAW_IMU3);
@@ -886,7 +886,7 @@ GCS_MAVLINK_Sub::data_stream_send(void)
     }
 
     if (stream_trigger(STREAM_EXTENDED_STATUS)) {
-        hal.uartD->printf("STREAM_EXTENDED_STATUS return/n");			
+			
         send_message(MSG_EXTENDED_STATUS1);
         send_message(MSG_EXTENDED_STATUS2);
         send_message(MSG_CURRENT_WAYPOINT);
