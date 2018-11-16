@@ -1006,7 +1006,6 @@ void GCS_MAVLINK::packetReceived(const mavlink_status_t &status,
 {
     // we exclude radio packets to make it possible to use the
     // CLI over the radio
-    hal.uartD->printf("msgid = %d \n",msg.msgid);
     if (msg.msgid != MAVLINK_MSG_ID_RADIO && msg.msgid != MAVLINK_MSG_ID_RADIO_STATUS) {
         mavlink_active |= (1U<<(chan-MAVLINK_COMM_0));
     }
@@ -1025,7 +1024,6 @@ void GCS_MAVLINK::packetReceived(const mavlink_status_t &status,
     }
     // if a snoop handler has been setup then use it
     if (msg_snoop != nullptr) {
-		hal.uartD->printf("msg_snoop \n");
         msg_snoop(&msg);
     }
     if (routing.check_and_forward(chan, &msg) &&
@@ -1512,7 +1510,7 @@ void GCS_MAVLINK::handle_set_mode(mavlink_message_t* msg, set_mode_fn set_mode)
     uint8_t result = MAV_RESULT_FAILED;
     mavlink_set_mode_t packet;
     mavlink_msg_set_mode_decode(msg, &packet);
-
+	hal.uartD->printf("custom_mode = %d,base_mode = %d,target_system = %d\n",packet.custom_mode,packet.base_mode,packet.target_system);
     // only accept custom modes because there is no easy mapping from Mavlink flight modes to AC flight modes
     if (packet.base_mode & MAV_MODE_FLAG_CUSTOM_MODE_ENABLED) {
         if (set_mode(packet.custom_mode)) {
