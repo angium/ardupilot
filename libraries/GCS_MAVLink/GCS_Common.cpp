@@ -1018,11 +1018,9 @@ void GCS_MAVLINK::packetReceived(const mavlink_status_t &status,
         // if we receive any MAVLink2 packets on a connection
         // currently sending MAVLink1 then switch to sending
         // MAVLink2
-        	hal.uartD->printf("status flag \n");
         mavlink_status_t *cstatus = mavlink_get_channel_status(chan);
         if (cstatus != nullptr) {
             cstatus->flags &= ~MAVLINK_STATUS_FLAG_OUT_MAVLINK1;
-			hal.uartD->printf("cstatus flag \n");
         }
     }
     // if a snoop handler has been setup then use it
@@ -1030,10 +1028,8 @@ void GCS_MAVLINK::packetReceived(const mavlink_status_t &status,
 		hal.uartD->printf("msg_snoop \n");
         msg_snoop(&msg);
     }
-	hal.uartD->printf("before check and forward \n");
     if (routing.check_and_forward(chan, &msg) &&
         accept_packet(status, msg)) {
-        	hal.uartD->printf(" handleMessage\n");
         handleMessage(&msg);
     }
 }
