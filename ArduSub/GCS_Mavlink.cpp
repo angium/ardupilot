@@ -1925,6 +1925,8 @@ void GCS_MAVLINK_Sub::handleMessage(mavlink_message_t* msg)
 void Sub::mavlink_delay_cb()
 {
     static uint32_t last_1hz, last_50hz, last_5s;
+
+	hal.uartD->printf("mavlink_delay_cb is running\n");
     if (!gcs_chan[0].initialised || in_mavlink_delay) {
         return;
     }
