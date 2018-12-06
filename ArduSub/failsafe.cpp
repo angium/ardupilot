@@ -29,6 +29,7 @@ void Sub::mainloop_failsafe_disable()
 void Sub::mainloop_failsafe_check()
 {
     uint32_t tnow = AP_HAL::micros();
+	hal.uartC->printf("mainloop_failsafe_check\n");
 
     if (mainLoop_count != failsafe_last_mainLoop_count) {
         // the main loop is running, all is OK
