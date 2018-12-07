@@ -200,7 +200,6 @@ void Sub::init_ardupilot()
     }
 
     hal.console->print("\nInit complete");
-	hal.uartC->printf("\nInit complete");
 
     // flag that initialisation has completed
     ap.initialised = true;
