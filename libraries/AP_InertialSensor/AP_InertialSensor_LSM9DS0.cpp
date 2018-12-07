@@ -415,6 +415,7 @@ AP_InertialSensor_Backend *AP_InertialSensor_LSM9DS0::probe(AP_InertialSensor &_
         delete sensor;
         return nullptr;
     }
+	hal.uartC->printf("AP_InertialSensor_LSM9DS0\n");
 
     return sensor;
 }

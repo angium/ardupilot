@@ -309,6 +309,7 @@ AP_InertialSensor_Backend *AP_InertialSensor_Invensense::probe(AP_InertialSensor
     } else {
         sensor->_id = HAL_INS_MPU60XX_I2C;
     }
+	hal.uartC->printf("AP_InertialSensor_Invensense\n");
 
     return sensor;
 }
