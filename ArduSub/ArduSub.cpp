@@ -145,7 +145,7 @@ void Sub::loop()
     // used by PI Loops
     G_Dt                    = (float)(timer - fast_loopTimer) / 1000000.0f;
     fast_loopTimer          = timer;
-	hal.uartC->printf("G_Dt= %f\n",G_Dt);
+
 
     // for mainloop failure monitoring
     mainLoop_count++;
@@ -163,6 +163,7 @@ void Sub::loop()
     // the first call to the scheduler they won't run on a later
     // call until scheduler.tick() is called again
     uint32_t time_available = (timer + MAIN_LOOP_MICROS) - micros();
+	hal.uartC->printf("time_available= %d\n",time_available);	
     scheduler.run(time_available);
 }
 
