@@ -660,11 +660,16 @@ bool AP_InertialSensor::_add_backend(AP_InertialSensor_Backend *backend)
 void
 AP_InertialSensor::detect_backends(void)
 {
-    if (_backends_detected) {
+	hal.uartC->printf("detect_backends");
+
+
+	if (_backends_detected) {
+
         return;
     }
 
     _backends_detected = true;
+	hal.uartC->printf("%d\n",CONFIG_HAL_BOARD);
 
     if (_hil_mode) {
         _add_backend(AP_InertialSensor_HIL::detect(*this));
@@ -688,8 +693,10 @@ AP_InertialSensor::detect_backends(void)
     _add_backend(AP_InertialSensor_Invensense::probe(*this, hal.i2c_mgr->get_device(HAL_INS_MPU60x0_I2C_BUS, HAL_INS_MPU60x0_I2C_ADDR)));
     _add_backend(AP_InertialSensor_Invensense::probe(*this, hal.spi->get_device(HAL_INS_MPU9250_NAME)));
 #elif HAL_INS_DEFAULT == HAL_INS_PX4 || HAL_INS_DEFAULT == HAL_INS_VRBRAIN
+	hal.uartC->printf("%d\n",AP_BoardConfig::get_board_type());
 
     switch (AP_BoardConfig::get_board_type()) {
+		
     case AP_BoardConfig::PX4_BOARD_PX4V1:
         _add_backend(AP_InertialSensor_Invensense::probe(*this, hal.spi->get_device(HAL_INS_MPU60x0_NAME)));
         break;
@@ -706,7 +713,7 @@ AP_InertialSensor::detect_backends(void)
 
     case AP_BoardConfig::PX4_BOARD_PIXHAWK2:
         // older Pixhawk2 boards have the MPU6000 instead of MPU9250
-              hal.uartC->printf("detect PX4_BOARD_PIXHAWK2");
+
         _fast_sampling_mask.set_default(1);
         _add_backend(AP_InertialSensor_Invensense::probe(*this, hal.spi->get_device(HAL_INS_MPU9250_EXT_NAME), ROTATION_PITCH_180));
         _add_backend(AP_InertialSensor_LSM9DS0::probe(*this,
