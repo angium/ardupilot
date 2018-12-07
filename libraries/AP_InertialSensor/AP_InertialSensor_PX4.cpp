@@ -161,7 +161,9 @@ bool AP_InertialSensor_PX4::_init_sensor(void)
 
 bool AP_InertialSensor_PX4::update(void) 
 {
-    // get the latest sample from the sensor drivers
+
+	hal.uartC->printf("AP_InertialSensor_PX4 update\n");
+	// get the latest sample from the sensor drivers
     _get_sample();
 
     for (uint8_t k=0; k<_num_accel_instances; k++) {
