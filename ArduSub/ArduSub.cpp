@@ -137,7 +137,7 @@ void Sub::loop()
     ins.wait_for_sample();
 
     uint32_t timer = micros();
-	hal.uartC->printf("timer= %d\n,"timer);
+	hal.uartC->printf("timer= %d\n",timer);
 
     // check loop time
     perf_info_check_loop_time(timer - fast_loopTimer);
