@@ -1958,9 +1958,9 @@ void Sub::gcs_send_message(enum ap_message id)
 {
     for (uint8_t i=0; i<num_gcs; i++) {
         if (gcs_chan[i].initialised) {
-			if(i==1||i==2)
-			{}
-			else
+	//		if(i==1||i==2)
+		//	{}
+		//	else
             gcs_chan[i].send_message(id);
         }
     }
