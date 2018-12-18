@@ -45,8 +45,14 @@ static MAVLink_routing routing;
 
 void setup(void)
 {
-    hal.console->printf("routing test startup...");
-    gcs_link[0].init(hal.uartA, MAVLINK_COMM_0);
+	
+		hal.console = hal.uartA;
+		hal.console->begin(AP_SERIALMANAGER_CONSOLE_BAUD,
+                         AP_SERIALMANAGER_CONSOLE_BUFSIZE_RX,
+                         AP_SERIALMANAGER_CONSOLE_BUFSIZE_TX);
+
+	hal.console->printf("routing test startup...");
+ //   gcs_link[0].init(hal.uartA, MAVLINK_COMM_0);
 }
 
 void loop(void)
