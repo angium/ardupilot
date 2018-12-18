@@ -46,20 +46,20 @@ static MAVLink_routing routing;
 void setup(void)
 {
 	
-		hal.console = hal.uartA;
-		hal.console->begin(AP_SERIALMANAGER_CONSOLE_BAUD,
+	//	hal.console = hal.uartA;
+		hal.uartA->begin(AP_SERIALMANAGER_CONSOLE_BAUD,
                          AP_SERIALMANAGER_CONSOLE_BUFSIZE_RX,
                          AP_SERIALMANAGER_CONSOLE_BUFSIZE_TX);
 
 	hal.console->printf("routing test startup...");
- //   gcs_link[0].init(hal.uartA, MAVLINK_COMM_0);
+ //  gcs_link[0].init(hal.uartA, MAVLINK_COMM_0);
 }
 
 void loop(void)
 {
     uint16_t err_count = 0;
 	hal.uartC->printf("loop is runing \n");
-	hal.console->printf("routing test startup...\n");
+	hal.uartA->printf("routing test startup...\n");
 
     // incoming heartbeat
     mavlink_message_t msg;
