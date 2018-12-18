@@ -47,6 +47,9 @@ void setup(void)
 {
 	hal.scheduler->delay(1000); //Ensure that the uartA can be initialized
 
+	hal.console = hal.uartA;
+	hal.uartA->begin(115200);
+
 	hal.console->printf("routing test startup...");
     gcs_link[0].init(hal.uartA, MAVLINK_COMM_0);
 }
