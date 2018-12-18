@@ -49,7 +49,7 @@ GCS_MAVLINK::init(AP_HAL::UARTDriver *port, mavlink_channel_t mav_chan)
     if (!valid_channel(mav_chan)) {
         return;
     }
-	hal.uartD->printf("gcs_mavlink init\n");
+	hal.uartC->printf("gcs_mavlink init\n");
     _port = port;
     chan = mav_chan;
 
