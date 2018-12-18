@@ -52,7 +52,7 @@ void setup(void)
 void loop(void)
 {
     uint16_t err_count = 0;
-	hal.uartA->printf("loop is runing \n");
+	hal.uartC->printf("loop is runing \n");
 
     // incoming heartbeat
     mavlink_message_t msg;
