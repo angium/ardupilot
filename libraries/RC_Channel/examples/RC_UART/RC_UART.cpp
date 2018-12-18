@@ -51,7 +51,7 @@ void RC_UART::loop()
         uint16_t period[NUM_CHANNELS];
         uint8_t bytes[NUM_CHANNELS*2];
     } u;
-
+	hal.uartC->printf("RC_UART loop\n");
     // wait for magic
     while (true) {
         uint8_t c = read_wait();
