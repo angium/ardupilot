@@ -47,7 +47,6 @@ void setup(void)
 {
 	hal.scheduler->delay(1000); //Ensure that the uartA can be initialized
 
-//	hal.console = hal.uartA;
 	hal.uartA->begin(115200);
 
 	hal.console->printf("routing test startup...");
@@ -58,7 +57,7 @@ void loop(void)
 {
     uint16_t err_count = 0;
 	hal.uartC->printf("loop is runing \n");
-	hal.console->printf("routing test startup...\n");
+	hal.console->printf("routing test startup...loop...\n");
 
     // incoming heartbeat
     mavlink_message_t msg;

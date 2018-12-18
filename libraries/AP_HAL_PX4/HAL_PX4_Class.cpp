@@ -178,7 +178,6 @@ static int main_loop(int argc, char **argv)
 
     while (!_px4_thread_should_exit) {
         perf_begin(perf_loop);
-        	hal.uartA->printf("fuckyou");
         /*
           this ensures a tight loop waiting on a lower priority driver
           will eventually give up some time for the driver to run. It
