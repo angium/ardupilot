@@ -92,9 +92,6 @@ bool MAVLink_routing::check_and_forward(mavlink_channel_t in_channel, const mavl
 {
     // handle the case of loopback of our own messages, due to
     // incorrect serial configuration.
-	hal.uartA->printf("msg_sysid =%d,msg_compid =%d\n",msg->sysid,msg->compid);
-	
-	hal.uartA->printf("mavlink_sysid =%d,mavlink_compid =%d\n",mavlink_system.sysid,mavlink_system.compid);	
 	
     if (msg->sysid == mavlink_system.sysid && 
         msg->compid == mavlink_system.compid) {
