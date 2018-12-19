@@ -59,9 +59,9 @@ void loop(void)
 
     // incoming heartbeat
     mavlink_message_t msg;
-    mavlink_heartbeat_t heartbeat = {0};
+    mavlink_heartbeat_t heartbeat = {1000};
 
-    mavlink_msg_heartbeat_encode(7, 1, &msg, &heartbeat);
+    mavlink_msg_heartbeat_encode(0, 1, &msg, &heartbeat);
 //	hal.uartA->printf("sysid = %d,comid =%d\n",mavlink_system.sysid,mavlink_system.compid);
     if (!routing.check_and_forward(MAVLINK_COMM_0, &msg)) {
         hal.console->printf("heartbeat should be processed locally\n");
