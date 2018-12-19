@@ -1708,7 +1708,7 @@ void GCS_MAVLINK::send_home_all(const Location &home)
  */
 void GCS_MAVLINK::send_heartbeat(uint8_t type, uint8_t base_mode, uint32_t custom_mode, uint8_t system_status)
 {
-	hal.uartC->printf("send_heartbeat mega");
+
 
 	mavlink_msg_heartbeat_send(
         chan,

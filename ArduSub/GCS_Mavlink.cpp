@@ -75,7 +75,6 @@ NOINLINE void Sub::send_heartbeat(mavlink_channel_t chan)
 
     uint8_t mav_type;
     mav_type = MAV_TYPE_SUBMARINE;
-	hal.uartC->printf("sub send_heartbeat\n");
     gcs_chan[chan-MAVLINK_COMM_0].send_heartbeat(mav_type,
                                             base_mode,
                                             custom_mode,
