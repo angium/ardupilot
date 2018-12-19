@@ -345,7 +345,6 @@ void Sub::dataflash_periodic(void)
 void Sub::three_hz_loop()
 {
 
-	hal.uartC->printf("mavlink_system.compid = %d\n",mavlink_system.compid);
 
 	leak_detector.update();
 
