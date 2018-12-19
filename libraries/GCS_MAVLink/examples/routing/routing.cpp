@@ -115,7 +115,7 @@ void loop(void)
     }
 
     if (err_count == 0) {
-        hal.console->printf("All OK\n");
+  //      hal.console->printf("All OK\n");
     }
     hal.scheduler->delay(1000);
 }
