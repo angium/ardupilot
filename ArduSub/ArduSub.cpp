@@ -139,7 +139,7 @@ void Sub::loop()
     uint32_t timer = micros();
 	
 //	hal.uartC->printf("mavlink_system.sysid = %d\n",mavlink_system.sysid);
-	hal.uartC->printf("mavlink_system.compid = %d\n",mavlink_system.compid);	
+//	hal.uartC->printf("mavlink_system.compid = %d\n",mavlink_system.compid);	
     // check loop time
     perf_info_check_loop_time(timer - fast_loopTimer);
 
