@@ -193,7 +193,8 @@ void AP_Motors6DOF::output_min()
 
 int16_t AP_Motors6DOF::calc_thrust_to_pwm(float thrust_in) const
 {
-    return constrain_int16(1500 + thrust_in * 400, _throttle_radio_min, _throttle_radio_max);
+	hal.uartC->printf("thrust_in = %f,_throttle_radio_min =%d,_throttle_radio_max =%d\n",thrust_in,_throttle_radio_min,_throttle_radio_max);
+	return constrain_int16(1500 + thrust_in * 400, _throttle_radio_min, _throttle_radio_max);
 }
 
 void AP_Motors6DOF::output_to_motors()
@@ -241,7 +242,7 @@ void AP_Motors6DOF::output_to_motors()
 			if (motor_enabled[i]) {
 			hal.uartD->write((int8_t)(motor_out[i]&0xff));
 			hal.uartD->write((int8_t)((motor_out[i]&0xff00)>>8));
-   		    hal.uartC->printf("motor_out[%d] = %d\n",i,motor_out[i]);
+   //		    hal.uartC->printf("motor_out[%d] = %d\n",i,motor_out[i]);
 			}
 	    }
 		hal.uartD->write(0x0d);
