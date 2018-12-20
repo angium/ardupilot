@@ -109,7 +109,7 @@ void AP_RPM::init(void)
         // init called a 2nd time?
         return;
     }
-	hal.uartC->printf("CONFIG_HAL_BOARD=%d\n",CONFIG_HAL_BOARD);
+
     for (uint8_t i=0; i<RPM_MAX_INSTANCES; i++) {
 #if CONFIG_HAL_BOARD == HAL_BOARD_PX4  || CONFIG_HAL_BOARD == HAL_BOARD_VRBRAIN
         uint8_t type = _type[num_instances];
