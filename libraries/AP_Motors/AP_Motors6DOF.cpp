@@ -227,7 +227,7 @@ void AP_Motors6DOF::output_to_motors()
         for (i=0; i<AP_MOTORS_MAX_NUM_MOTORS; i++) {
             if (motor_enabled[i]) {
                 motor_out[i] = calc_thrust_to_pwm(_thrust_rpyt_out[i]);
-				hal.uartC->printf("_thrust_rpyt_out[%d] = %f\n",i,_thrust_rpyt_out[i]);
+		//		hal.uartC->printf("_thrust_rpyt_out[%d] = %f\n",i,_thrust_rpyt_out[i]);
 				//add rpm to up
             }
         }
