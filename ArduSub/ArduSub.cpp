@@ -16,6 +16,8 @@
 // ArduSub scheduling, originally copied from ArduCopter
 
 #include "Sub.h"
+#include "version.h"
+#include "GCS_Mavlink.h"
 
 #define SCHED_TASK(func, rate_hz, max_time_micros) SCHED_TASK_CLASS(Sub, &sub, func, rate_hz, max_time_micros)
 
@@ -174,6 +176,7 @@ void Sub::fast_loop()
 {
     // update INS immediately to get current gyro data populated
     ins.update();
+	try_send_message(MSG_RPM);
 
     if (control_mode != MANUAL) { //don't run rate controller in manual mode
         // run low level rate controllers that only require IMU data
@@ -344,7 +347,7 @@ void Sub::dataflash_periodic(void)
 // three_hz_loop - 3.3hz loop
 void Sub::three_hz_loop()
 {
-	try_send_message(MSG_RPM);
+
 
 	leak_detector.update();
 
