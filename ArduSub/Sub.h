@@ -499,8 +499,10 @@ private:
     void send_vfr_hud(mavlink_channel_t chan);
     void send_current_waypoint(mavlink_channel_t chan);
     void send_rangefinder(mavlink_channel_t chan);
-#if RPM_ENABLED == ENABLED
+
     void send_rpm(mavlink_channel_t chan);
+#if RPM_ENABLED == ENABLED
+
     void rpm_update();
 #endif
     void send_temperature(mavlink_channel_t chan);

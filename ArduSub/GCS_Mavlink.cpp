@@ -358,7 +358,7 @@ void NOINLINE Sub::send_rangefinder(mavlink_channel_t chan)
 /*
   send RPM packet
  */
-#if RPM_ENABLED == ENABLED
+//#if RPM_ENABLED == ENABLED
 void NOINLINE Sub::send_rpm(mavlink_channel_t chan)
 {
   
@@ -379,7 +379,7 @@ void NOINLINE Sub::send_rpm(mavlink_channel_t chan)
             rpm_sensor.get_rpm(1));
     }*/
 }
-#endif
+//#endif
 
 // Work around to get temperature sensor data out
 void NOINLINE Sub::send_temperature(mavlink_channel_t chan)
