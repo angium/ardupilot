@@ -16,8 +16,6 @@
 // ArduSub scheduling, originally copied from ArduCopter
 
 #include "Sub.h"
-#include "version.h"
-#include "GCS_Mavlink.h"
 
 #define SCHED_TASK(func, rate_hz, max_time_micros) SCHED_TASK_CLASS(Sub, &sub, func, rate_hz, max_time_micros)
 
