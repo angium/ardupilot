@@ -372,12 +372,12 @@ void NOINLINE Sub::send_rpm(mavlink_channel_t chan)
 //	_mav_put_float(buf, 28,_thrust_rpyt_out[7]);
 //	_mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RPM, buf, 32);
 	
- if (rpm_sensor.enabled(0) || rpm_sensor.enabled(1)) {
+/* if (rpm_sensor.enabled(0) || rpm_sensor.enabled(1)) {
         mavlink_msg_rpm_send(
             chan,
             rpm_sensor.get_rpm(0),
             rpm_sensor.get_rpm(1));
-    }
+    }*/
 }
 #endif
 
