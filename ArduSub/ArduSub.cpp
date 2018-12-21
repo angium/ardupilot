@@ -16,6 +16,7 @@
 // ArduSub scheduling, originally copied from ArduCopter
 
 #include "Sub.h"
+#include "GCS.h"
 
 #define SCHED_TASK(func, rate_hz, max_time_micros) SCHED_TASK_CLASS(Sub, &sub, func, rate_hz, max_time_micros)
 
@@ -344,7 +345,7 @@ void Sub::dataflash_periodic(void)
 // three_hz_loop - 3.3hz loop
 void Sub::three_hz_loop()
 {
-//	try_send_message(MSG_RPM);
+	try_send_message(MSG_RPM);
 
 	leak_detector.update();
 
