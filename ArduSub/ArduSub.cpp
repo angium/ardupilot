@@ -345,8 +345,8 @@ void Sub::dataflash_periodic(void)
 // three_hz_loop - 3.3hz loop
 void Sub::three_hz_loop()
 {
-	GCS_MAVLINK_Sub::try_send_message((ap_message)MSG_RPM);
-
+//	GCS_MAVLINK_Sub::try_send_message((ap_message)MSG_RPM);
+	send_rpm(MAVLINK_COMM_0);
 	leak_detector.update();
 
     failsafe_leak_check();
