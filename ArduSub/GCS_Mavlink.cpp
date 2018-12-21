@@ -650,6 +650,7 @@ bool GCS_MAVLINK_Sub::try_send_message(enum ap_message id)
 
     case MSG_RPM:
 		hal.uartC->printf("MSG_RPM");
+		sub.send_rpm(MAVLINK_COMM_0);
 #if RPM_ENABLED == ENABLED
         CHECK_PAYLOAD_SIZE(RPM);
 //		hal.uartC->printf("MSG_RPM IS RUNNING\n");
