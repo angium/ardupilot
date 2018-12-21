@@ -521,7 +521,7 @@ void Sub::send_pid_tuning(mavlink_channel_t chan)
 // try to send a message, return false if it won't fit in the serial tx buffer
 bool GCS_MAVLINK_Sub::try_send_message(enum ap_message id)
 {
-//	hal.uartC->printf("mavlink sub try_send_message\n");
+	hal.uartC->printf("mavlink sub try_send_message\n");
 
 	if (telemetry_delayed(chan)) {
         return false;
