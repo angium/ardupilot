@@ -358,7 +358,7 @@ void NOINLINE Sub::send_rangefinder(mavlink_channel_t chan)
 /*
   send RPM packet
  */
-#if RPM_ENABLED == DISABLED
+#if RPM_ENABLED == ENABLED
 void NOINLINE Sub::send_rpm(mavlink_channel_t chan)
 {
   
