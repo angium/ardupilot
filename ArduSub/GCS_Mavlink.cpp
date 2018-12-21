@@ -362,15 +362,15 @@ void NOINLINE Sub::send_rangefinder(mavlink_channel_t chan)
 void NOINLINE Sub::send_rpm(mavlink_channel_t chan)
 {
   
-/*	_mav_put_float(buf, 0 ,_thrust_rpyt_out[0]);
-	_mav_put_float(buf, 4 ,_thrust_rpyt_out[1]);
-	_mav_put_float(buf, 8 ,_thrust_rpyt_out[2]);
-	_mav_put_float(buf, 12,_thrust_rpyt_out[3]);
-	_mav_put_float(buf, 16,_thrust_rpyt_out[4]);
-	_mav_put_float(buf, 20,_thrust_rpyt_out[5]);
-	_mav_put_float(buf, 24,_thrust_rpyt_out[6]);
-	_mav_put_float(buf, 28,_thrust_rpyt_out[7]);
-	_mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RPM, buf, 32);*/
+	_mav_put_float(buf, 0 ,0.1);
+	_mav_put_float(buf, 4 ,0.1);
+	_mav_put_float(buf, 8 ,0.1;
+	_mav_put_float(buf, 12,0.1);
+	_mav_put_float(buf, 16,0.1);
+	_mav_put_float(buf, 20,0.1);
+	_mav_put_float(buf, 24,0.1);
+	_mav_put_float(buf, 28,0.1);
+	_mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RPM, buf, 32);/**/
 	
 /* if (rpm_sensor.enabled(0) || rpm_sensor.enabled(1)) {
         mavlink_msg_rpm_send(
