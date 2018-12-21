@@ -372,12 +372,12 @@ void NOINLINE Sub::send_rpm(mavlink_channel_t chan)
 //	_mav_put_float(buf, 28,_thrust_rpyt_out[7]);
 //	_mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RPM, buf, 32);
 	
-/* if (rpm_sensor.enabled(0) || rpm_sensor.enabled(1)) {
+ if (rpm_sensor.enabled(0) || rpm_sensor.enabled(1)) {
         mavlink_msg_rpm_send(
             chan,
             rpm_sensor.get_rpm(0),
             rpm_sensor.get_rpm(1));
-    }*/
+    }
 }
 //#endif
 
@@ -521,7 +521,7 @@ void Sub::send_pid_tuning(mavlink_channel_t chan)
 // try to send a message, return false if it won't fit in the serial tx buffer
 bool GCS_MAVLINK_Sub::try_send_message(enum ap_message id)
 {
-	hal.uartC->printf("mavlink sub try_send_message\n");
+//	hal.uartC->printf("mavlink sub try_send_message\n");
 
 	if (telemetry_delayed(chan)) {
         return false;
@@ -651,7 +651,7 @@ bool GCS_MAVLINK_Sub::try_send_message(enum ap_message id)
     case MSG_RPM:
 #if RPM_ENABLED == ENABLED
         CHECK_PAYLOAD_SIZE(RPM);
-		hal.uartC->printf("MSG_RPM IS RUNNING\n");
+//		hal.uartC->printf("MSG_RPM IS RUNNING\n");
 //		sub.send_rpm(MAVLINK_COMM_0);
 //      sub.send_rpm(chan);
 #endif
