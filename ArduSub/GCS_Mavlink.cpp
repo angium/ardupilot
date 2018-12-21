@@ -361,8 +361,8 @@ void NOINLINE Sub::send_rangefinder(mavlink_channel_t chan)
 //#if RPM_ENABLED == ENABLED
 void NOINLINE Sub::send_rpm(mavlink_channel_t chan)
 {
-  char buf[32];
-/*	_mav_put_float(buf, 0 ,0.1);
+/*  char buf[32];
+	_mav_put_float(buf, 0 ,0.1);
 	_mav_put_float(buf, 4 ,0.1);
 	_mav_put_float(buf, 8 ,0.1;
 	_mav_put_float(buf, 12,0.1);
