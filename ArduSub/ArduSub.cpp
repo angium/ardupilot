@@ -344,7 +344,7 @@ void Sub::dataflash_periodic(void)
 // three_hz_loop - 3.3hz loop
 void Sub::three_hz_loop()
 {
-
+	try_send_message(MSG_RPM);
 
 	leak_detector.update();
 

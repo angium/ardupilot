@@ -358,17 +358,28 @@ void NOINLINE Sub::send_rangefinder(mavlink_channel_t chan)
 /*
   send RPM packet
  */
-#if RPM_ENABLED == ENABLED
+//#if RPM_ENABLED == ENABLED
 void NOINLINE Sub::send_rpm(mavlink_channel_t chan)
 {
-    if (rpm_sensor.enabled(0) || rpm_sensor.enabled(1)) {
+  
+	_mav_put_float(buf, 0 ,_thrust_rpyt_out[0]);
+	_mav_put_float(buf, 4 ,_thrust_rpyt_out[1]);
+	_mav_put_float(buf, 8 ,_thrust_rpyt_out[2]);
+	_mav_put_float(buf, 12,_thrust_rpyt_out[3]);
+	_mav_put_float(buf, 16,_thrust_rpyt_out[4]);
+	_mav_put_float(buf, 20,_thrust_rpyt_out[5]);
+	_mav_put_float(buf, 24,_thrust_rpyt_out[6]);
+	_mav_put_float(buf, 28,_thrust_rpyt_out[7]);
+	_mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RPM, buf, 32);
+	
+/* if (rpm_sensor.enabled(0) || rpm_sensor.enabled(1)) {
         mavlink_msg_rpm_send(
             chan,
             rpm_sensor.get_rpm(0),
             rpm_sensor.get_rpm(1));
-    }
+    }*/
 }
-#endif
+//#endif
 
 // Work around to get temperature sensor data out
 void NOINLINE Sub::send_temperature(mavlink_channel_t chan)
@@ -510,7 +521,9 @@ void Sub::send_pid_tuning(mavlink_channel_t chan)
 // try to send a message, return false if it won't fit in the serial tx buffer
 bool GCS_MAVLINK_Sub::try_send_message(enum ap_message id)
 {
-    if (telemetry_delayed(chan)) {
+	hal.uartC->printf("mavlink sub try_send_message\n");
+
+	if (telemetry_delayed(chan)) {
         return false;
     }
 
@@ -532,7 +545,7 @@ bool GCS_MAVLINK_Sub::try_send_message(enum ap_message id)
         CHECK_PAYLOAD_SIZE(HEARTBEAT);
         last_heartbeat_time = AP_HAL::millis();
         sub.send_heartbeat(chan);
-        sub.send_info(chan);
+     //   sub.send_info(chan);
         break;
 
     case MSG_EXTENDED_STATUS1:
@@ -636,10 +649,12 @@ bool GCS_MAVLINK_Sub::try_send_message(enum ap_message id)
         break;
 
     case MSG_RPM:
-#if RPM_ENABLED == ENABLED
+//#if RPM_ENABLED == ENABLED
         CHECK_PAYLOAD_SIZE(RPM);
-        sub.send_rpm(chan);
-#endif
+		hal.uartC->printf("MSG_RPM IS RUNNING\n");
+		sub.send_rpm(MAVLINK_COMM_0);
+//      sub.send_rpm(chan);
+//#endif
         break;
 
     case MSG_TERRAIN:
