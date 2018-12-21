@@ -952,6 +952,8 @@ GCS_MAVLINK::handle_gps_inject(const mavlink_message_t *msg, AP_GPS &gps)
 void GCS_MAVLINK::send_message(enum ap_message id)
 {
     uint8_t i, nextid;
+	printf("send_message\n");
+	try_send_message(MSG_RPM);
 
     if (id == MSG_HEARTBEAT) {
         save_signing_timestamp(false);
