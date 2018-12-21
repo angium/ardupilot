@@ -176,7 +176,6 @@ void Sub::fast_loop()
 {
     // update INS immediately to get current gyro data populated
     ins.update();
-	try_send_message(MSG_RPM);
 
     if (control_mode != MANUAL) { //don't run rate controller in manual mode
         // run low level rate controllers that only require IMU data
