@@ -370,7 +370,8 @@ void NOINLINE Sub::send_rangefinder(mavlink_channel_t chan)
 //#if RPM_ENABLED == ENABLED
 void NOINLINE Sub::send_rpm(mavlink_channel_t chan)
 {
-  char buf[32];
+	hal.uartC->printf("in send_rpm");
+/*  char buf[32];
 	_mav_rpm_put_float(buf, 0 ,0.1);
 	_mav_rpm_put_float(buf, 4 ,0.1);
 	_mav_rpm_put_float(buf, 8 ,0.1;
@@ -379,14 +380,16 @@ void NOINLINE Sub::send_rpm(mavlink_channel_t chan)
 	_mav_rpm_put_float(buf, 20,0.1);
 	_mav_rpm_put_float(buf, 24,0.1);
 	_mav_rpm_put_float(buf, 28,0.1);
-/*	_mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RPM, buf, 32);*/
+	_mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RPM, buf, 32);*/
 	
-/* if (rpm_sensor.enabled(0) || rpm_sensor.enabled(1)) {
+ //if (rpm_sensor.enabled(0) || rpm_sensor.enabled(1)) {
         mavlink_msg_rpm_send(
             chan,
-            rpm_sensor.get_rpm(0),
-            rpm_sensor.get_rpm(1));
-    }*/
+            	0.1,
+            	0.1);
+      //      rpm_sensor.get_rpm(0),
+       //     rpm_sensor.get_rpm(1));
+  /*  }*/
 }
 //#endif
 
@@ -1109,8 +1112,20 @@ void GCS_MAVLINK_Sub::handleMessage(mavlink_message_t* msg)
 #endif
         break;
     }
+	case 233: {
+		int16_t lights1_control;
+		int16_t lights2_control;		
+			hal.uartC->printf("msgid = %d\n",msg->msgid);
+			hal.uartC->printf("len = %d\n",msg->len);
+			lights1_control = (int16_t)((msg->payload64[0])&0x0000ffff);
+			lights2_control = (int16_t)(((msg->payload64[0])&0xffff0000)>>16);	
+			hal.uartC->printf("lights1 = %d,lights2=%d\n",lights1_control,lights2_control);
+		//	hal.uartC->printf("lights1 = %d,lights2=%d\n",lights1_control,lights2_control);
 
-    case MAVLINK_MSG_ID_MANUAL_CONTROL: {     // MAV ID: 69
+			break;
+		}
+
+   case MAVLINK_MSG_ID_MANUAL_CONTROL: {     // MAV ID: 69
         if (msg->sysid != sub.g.sysid_my_gcs) {
             break;    // Only accept control from our gcs
         }
@@ -1119,7 +1134,7 @@ void GCS_MAVLINK_Sub::handleMessage(mavlink_message_t* msg)
 
         sub.transform_manual_control_to_rc_override(packet.x,packet.y,packet.z,packet.r,packet.buttons);
 
-		hal.uartD->printf("x =%d,y =%d,z =%d,r =%d,buttons =%d\n",packet.x,packet.y,packet.z,packet.r,packet.buttons);
+	//	hal.uartC->printf("x =%d,y =%d,z =%d,r =%d,buttons =%d,target=%d\n",packet.x,packet.y,packet.z,packet.r,packet.buttons,packet.target);
 
         sub.failsafe.last_pilot_input_ms = AP_HAL::millis();
         // a RC override message is considered to be a 'heartbeat' from the ground station for failsafe purposes
@@ -1983,9 +1998,9 @@ void Sub::gcs_send_message(enum ap_message id)
 {
     for (uint8_t i=0; i<num_gcs; i++) {
         if (gcs_chan[i].initialised) {
-	//		if(i==1||i==2)
-		//	{}
-		//	else
+			if(i==1&&id == MSG_HEARTBEAT)
+			{}
+			else
             gcs_chan[i].send_message(id);
         }
     }

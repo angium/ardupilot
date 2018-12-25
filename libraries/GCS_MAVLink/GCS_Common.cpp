@@ -952,7 +952,7 @@ GCS_MAVLINK::handle_gps_inject(const mavlink_message_t *msg, AP_GPS &gps)
 void GCS_MAVLINK::send_message(enum ap_message id)
 {
     uint8_t i, nextid;
-	try_send_message(MSG_RPM);
+	//try_send_message(MSG_SERVO_OUTPUT_RAW);
 
     if (id == MSG_HEARTBEAT) {
         save_signing_timestamp(false);
@@ -1010,7 +1010,7 @@ void GCS_MAVLINK::packetReceived(const mavlink_status_t &status,
     if (msg.msgid != MAVLINK_MSG_ID_RADIO && msg.msgid != MAVLINK_MSG_ID_RADIO_STATUS) {
         mavlink_active |= (1U<<(chan-MAVLINK_COMM_0));
     }
-	hal.uartD->printf("flag = %d \n",status.flags);
+//	hal.uartC->printf("flag = %d \n",status.flags);
     if (!(status.flags & MAVLINK_STATUS_FLAG_IN_MAVLINK1) &&
         (status.flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) &&
         serialmanager_p &&
@@ -1025,6 +1025,7 @@ void GCS_MAVLINK::packetReceived(const mavlink_status_t &status,
     }
     // if a snoop handler has been setup then use it
     if (msg_snoop != nullptr) {
+		hal.uartC->printf("msg_snoop\n");
         msg_snoop(&msg);
     }
     if (routing.check_and_forward(chan, &msg) &&
@@ -1046,6 +1047,8 @@ GCS_MAVLINK::update(run_cli_fn run_cli)
     for (uint16_t i=0; i<nbytes; i++)
     {
         uint8_t c = comm_receive_ch(chan);
+		
+		hal.uartC->printf("(%d) = %d\n",i,c);
 
         if (run_cli) {
             /* allow CLI to be started by hitting enter 3 times, if no
