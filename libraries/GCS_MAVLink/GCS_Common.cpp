@@ -1112,7 +1112,7 @@ GCS_MAVLINK::update(run_cli_fn run_cli)
 
 				}
 
-
+#if 0
 			static uint16_t cnt1=0;
 			cnt1++;
 			if(cnt1>10)
@@ -1136,7 +1136,7 @@ GCS_MAVLINK::update(run_cli_fn run_cli)
 
 
 			}
-
+#endif
     if (!waypoint_receiving) {
         return;
     }
