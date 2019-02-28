@@ -2,6 +2,7 @@
 
 // Functions that will handle joystick/gamepad input
 // ----------------------------------------------------------------------------
+#define CAM_TEST   ENABLE
 
 // Anonymous namespace to hold variables used only in this file
 namespace {
@@ -112,17 +113,20 @@ void Sub::transform_manual_control_to_rc_override(int16_t x, int16_t y, int16_t 
     channels[7] = cam_tilt;      // camera tilt
     channels[8] = lights1;       // lights 1
     channels[9] = lights2;       // lights 2
-//	 static uint8_t cnt1 = 0;
-//	 cnt1++;
-//	if(cnt1 > 10)
-//	{
-//		cnt1 = 0;
-//		for (uint8_t i = 0 ; i < 11 ; i++) {
-//			   hal.uartC->printf("channel[%d]=%d\n",i,channels[i]);
-//		   }
-//	}
+
     channels[10] = video_switch; // video switch
 
+	#if 1
+   	static uint8_t cnt1 = 0;
+	 cnt1++;
+	if(cnt1 > 10)
+	{
+		cnt1 = 0;
+		for (uint8_t i = 0 ; i < 11 ; i++) {
+			   hal.uartC->printf("channel[%d]=%d\n",i,channels[i]);
+		   }
+	}
+	#endif
     // Store old x, y, z values for use in input hold logic
     x_last = x;
     y_last = y;
@@ -180,10 +184,33 @@ void Sub::handle_jsbutton_press(uint8_t button, bool shift, bool held)
         camera_mount.set_mode(MAV_MOUNT_MODE_RC_TARGETING);
         break;
     case JSButton::button_function_t::k_mount_tilt_up:
-        cam_tilt = 1900;
+		#if CAM_TEST
+	    if (1) {
+        RC_Channel* chan = RC_Channels::rc_channel(6);
+        uint16_t min = chan->get_radio_min();
+        uint16_t max = chan->get_radio_max();
+        uint16_t step = (max - min) / 100;
+        cam_tilt = constrain_float(cam_tilt + step, min, max);
+        }
+		#else
+ 		cam_tilt = 1900;
+		#endif
+ //		cam_tilt = 1900;		
         break;
     case JSButton::button_function_t::k_mount_tilt_down:
+		#if CAM_TEST		
+	    if (1) {
+        RC_Channel* chan = RC_Channels::rc_channel(6);
+        uint16_t min = chan->get_radio_min();
+        uint16_t max = chan->get_radio_max();
+        uint16_t step = (max - min) /100;
+        cam_tilt = constrain_float(cam_tilt - step, min, max);
+        }
+		#else
         cam_tilt = 1100;
+		#endif	
+     //   cam_tilt = 1100;
+
         break;
     case JSButton::button_function_t::k_camera_trigger:
         break;
@@ -201,10 +228,32 @@ void Sub::handle_jsbutton_press(uint8_t button, bool shift, bool held)
         }
         break;
     case JSButton::button_function_t::k_mount_pan_right:
-        cam_pan = 1900;
+		#if CAM_TEST
+	    if (1) {
+        RC_Channel* chan = RC_Channels::rc_channel(7);
+        uint16_t min = chan->get_radio_min();
+        uint16_t max = chan->get_radio_max();
+        uint16_t step = (max - min) / 100;
+        cam_pan = constrain_float(cam_pan + step, min, max);
+        }
+		#else
+ 		cam_pan = 1900;
+		#endif
+ //       cam_pan = 1900;
         break;
     case JSButton::button_function_t::k_mount_pan_left:
+		#if CAM_TEST		
+	    if (1) {
+        RC_Channel* chan = RC_Channels::rc_channel(7);
+        uint16_t min = chan->get_radio_min();
+        uint16_t max = chan->get_radio_max();
+        uint16_t step = (max - min) /100;
+        cam_pan = constrain_float(cam_pan - step, min, max);
+        }
+		#else
         cam_pan = 1100;
+		#endif	
+ //       cam_pan = 1100;
         break;
     case JSButton::button_function_t::k_lights1_cycle:
         if (!held) {
