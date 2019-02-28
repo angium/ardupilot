@@ -16,6 +16,8 @@
 // ArduSub scheduling, originally copied from ArduCopter
 
 #include "Sub.h"
+extern uint16_t lights1_control;
+extern uint16_t lights2_control;
 
 #define SCHED_TASK(func, rate_hz, max_time_micros) SCHED_TASK_CLASS(Sub, &sub, func, rate_hz, max_time_micros)
 

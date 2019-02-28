@@ -112,6 +112,15 @@ void Sub::transform_manual_control_to_rc_override(int16_t x, int16_t y, int16_t 
     channels[7] = cam_tilt;      // camera tilt
     channels[8] = lights1;       // lights 1
     channels[9] = lights2;       // lights 2
+//	 static uint8_t cnt1 = 0;
+//	 cnt1++;
+//	if(cnt1 > 10)
+//	{
+//		cnt1 = 0;
+//		for (uint8_t i = 0 ; i < 11 ; i++) {
+//			   hal.uartC->printf("channel[%d]=%d\n",i,channels[i]);
+//		   }
+//	}
     channels[10] = video_switch; // video switch
 
     // Store old x, y, z values for use in input hold logic

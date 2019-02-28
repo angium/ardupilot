@@ -35,12 +35,18 @@ void Sub::init_rc_in()
     hal.rcin->set_override(7, 1500); // camera tilt channel
 
     RC_Channel* chan = RC_Channels::rc_channel(8);
+		chan->set_radio_min(1100);
+		chan->set_radio_max(1900);		
     uint16_t min = chan->get_radio_min();
+
     hal.rcin->set_override(8, min); // lights 1 channel
+	hal.uartC->printf("lights1 = %d\n",min);
 
     chan = RC_Channels::rc_channel(9);
     min = chan->get_radio_min();
+
     hal.rcin->set_override(9, min); // lights 2 channel
+    hal.uartC->printf("lights2 = %d\n",min);
 
     hal.rcin->set_override(10, 1100); // video switch
 #endif

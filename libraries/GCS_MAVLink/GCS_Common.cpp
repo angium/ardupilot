@@ -29,6 +29,17 @@
 #include <fcntl.h>
 #endif
 
+
+#define SAVE_LENGTH 500
+
+uint8_t receivedata[SAVE_LENGTH] = {0}; 
+
+uint16_t lights1_control = 1100;
+uint16_t lights2_control = 1100;
+
+
+
+
 extern const AP_HAL::HAL& hal;
 
 uint32_t GCS_MAVLINK::last_radio_status_remrssi_ms;
@@ -49,7 +60,7 @@ GCS_MAVLINK::init(AP_HAL::UARTDriver *port, mavlink_channel_t mav_chan)
     if (!valid_channel(mav_chan)) {
         return;
     }
-
+	hal.uartC->printf("gcs_mavlink init\n");
     _port = port;
     chan = mav_chan;
 
@@ -1023,6 +1034,7 @@ void GCS_MAVLINK::packetReceived(const mavlink_status_t &status,
     }
     // if a snoop handler has been setup then use it
     if (msg_snoop != nullptr) {
+		hal.uartC->printf("msg_snoop\n");
         msg_snoop(&msg);
     }
     if (routing.check_and_forward(chan, &msg) &&
@@ -1044,7 +1056,8 @@ GCS_MAVLINK::update(run_cli_fn run_cli)
     for (uint16_t i=0; i<nbytes; i++)
     {
         uint8_t c = comm_receive_ch(chan);
-
+		if(SAVE_LENGTH > nbytes)
+		receivedata[i]= c ;
         if (run_cli) {
             /* allow CLI to be started by hitting enter 3 times, if no
              *  heartbeat packets have been received */
@@ -1066,6 +1079,63 @@ GCS_MAVLINK::update(run_cli_fn run_cli)
             packetReceived(status, msg);
         }
     }
+
+
+		if(receivedata[5] ==233&&receivedata[0] ==254)
+		{
+		    uint8_t sum_rec = 0;
+				for (uint16_t i=1; i<(nbytes-2-1); i++)
+				{
+					sum_rec = receivedata[i]+sum_rec;
+				}
+				if(receivedata[nbytes-2] == sum_rec)
+				{
+					lights1_control =( ((uint16_t)receivedata[6])&0x00ff)|((((uint16_t)(receivedata[7]))<<8)&0xff00);
+					lights2_control =( ((uint16_t)receivedata[8])&0x00ff)|((((uint16_t)(receivedata[9]))<<8)&0xff00);	
+					RC_Channel* chan1 = RC_Channels::rc_channel(8);
+				
+					 uint16_t min1 = chan1->get_radio_min();
+					 uint16_t max1 = chan1->get_radio_max();
+				
+					lights1_control = constrain_float(lights1_control, min1, max1);
+				
+					 RC_Channel* chan2 = RC_Channels::rc_channel(9);
+				
+					 uint16_t min2 = chan2->get_radio_min();
+					 uint16_t max2 = chan2->get_radio_max();
+				
+					lights2_control = constrain_float(lights2_control, min2, max2);
+				
+					hal.rcin->set_override(8,lights1_control);
+					hal.rcin->set_override(9,lights2_control);
+
+
+				}
+
+
+			static uint16_t cnt1=0;
+			cnt1++;
+			if(cnt1>10)
+			{
+				cnt1 =0;	
+				hal.uartC->printf("(%d) = %d\n",sum_rec,receivedata[nbytes-2]);
+				for (uint16_t i=0; i<nbytes; i++)
+			   {
+					hal.uartC->printf("(%d) = %d\n",i,receivedata[i]);			
+				}
+
+			}
+		}
+
+		static uint16_t cnt=0;
+			cnt++;
+			if(cnt>500)
+			{
+				cnt=0;
+				hal.uartC->printf("lights1_control = %d,lights2_control=%d\n",lights1_control,lights2_control);
+
+
+			}
 
     if (!waypoint_receiving) {
         return;

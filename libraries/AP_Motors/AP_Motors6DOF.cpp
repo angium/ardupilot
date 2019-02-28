@@ -200,6 +200,7 @@ int16_t AP_Motors6DOF::calc_thrust_to_pwm(float thrust_in) const
 void AP_Motors6DOF::output_to_motors()
 {
     int8_t i;
+	static int8_t m_cnt = 0;
     int16_t motor_out[AP_MOTORS_MAX_NUM_MOTORS];    // final pwm values sent to the motor
 
     switch (_spool_mode) {
@@ -234,6 +235,21 @@ void AP_Motors6DOF::output_to_motors()
 
     // send output to each motor
     hal.rcout->cork();
+	m_cnt++;
+	if(m_cnt >=10)
+	{
+		m_cnt = 0;
+		for (i=0; i<AP_MOTORS_MAX_NUM_MOTORS; i++) {
+			if (motor_enabled[i]) {
+			hal.uartD->write((int8_t)(motor_out[i]&0xff));
+			hal.uartD->write((int8_t)((motor_out[i]&0xff00)>>8));
+   //		    hal.uartC->printf("motor_out[%d] = %d\n",i,motor_out[i]);
+			}
+	    }
+		hal.uartD->write(0x0d);
+		hal.uartD->write(0x0a);		
+
+	}
     for (i=0; i<AP_MOTORS_MAX_NUM_MOTORS; i++) {
         if (motor_enabled[i]) {
             rc_write(i, motor_out[i]);
