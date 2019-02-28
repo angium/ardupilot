@@ -1125,8 +1125,9 @@ GCS_MAVLINK::update(run_cli_fn run_cli)
 				}
 
 			}
+#endif			
 		}
-
+#if 0
 		static uint16_t cnt=0;
 			cnt++;
 			if(cnt>500)
