@@ -20,7 +20,9 @@ extern uint16_t lights1_control;
 extern uint16_t lights2_control;
 
 
-extern RC_Channel *RC_Channels::channels;
+extern RC_Channel channel_can_pan;
+extern RC_Channel channel_can_tilt;
+
 
 
 #define SCHED_TASK(func, rate_hz, max_time_micros) SCHED_TASK_CLASS(Sub, &sub, func, rate_hz, max_time_micros)
@@ -228,8 +230,9 @@ void Sub::fifty_hz_loop()
     RC_Channels::set_pwm_all();
     SRV_Channels::output_ch_all();
 	
-	hal.rcout->write(10, RC_Channels::channels[6].read());
-	hal.rcout->write(11, RC_Channels::channels[7].read());
+	hal.rcout->write(10, channel_can_pan.read());
+	hal.rcout->write(11, channel_can_tilt.read());
+	
 }
 
 // updates the status of notify

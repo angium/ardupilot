@@ -134,6 +134,12 @@ RC_Channels::set_pwm_all(void)
 		for (uint8_t i=0; i<NUM_RC_CHANNELS; i++) 
 		hal.uartC->printf("RC_channels[%d] = %d\n",i,channels[i].read());
 
+
+		channel_can_pan = channels[6];
+		channel_can_tilt = channels[7];		
+		
+
+
 	}
 	#endif 
 	for (uint8_t i=0; i<NUM_RC_CHANNELS; i++) {
