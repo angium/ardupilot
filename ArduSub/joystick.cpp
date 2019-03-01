@@ -62,8 +62,8 @@ void Sub::transform_manual_control_to_rc_override(int16_t x, int16_t y, int16_t 
     bool shift = false;
 
     // Neutralize camera tilt and pan speed setpoint
-    cam_tilt = 1500;
-    cam_pan = 1500;
+//    cam_tilt = 1500;
+//    cam_pan = 1500;
 
     // Detect if any shift button is pressed
     for (uint8_t i = 0 ; i < 16 ; i++) {
@@ -189,7 +189,7 @@ void Sub::handle_jsbutton_press(uint8_t button, bool shift, bool held)
         RC_Channel* chan = RC_Channels::rc_channel(6);
         uint16_t min = chan->get_radio_min();
         uint16_t max = chan->get_radio_max();
-        uint16_t step = (max - min) / 100;
+        float step = (max - min) /100.0;
         cam_tilt = constrain_float(cam_tilt + step, min, max);
         }
 		hal.uartC->printf("cam_tilt  = %f \n",cam_tilt);
@@ -204,7 +204,7 @@ void Sub::handle_jsbutton_press(uint8_t button, bool shift, bool held)
         RC_Channel* chan = RC_Channels::rc_channel(6);
         uint16_t min = chan->get_radio_min();
         uint16_t max = chan->get_radio_max();
-        uint16_t step = (max - min) /100;
+        float step = (max - min) /100.0;
         cam_tilt = constrain_float(cam_tilt - step, min, max);
         }
 		hal.uartC->printf("cam_tilt  = %f \n",cam_tilt);
