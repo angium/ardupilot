@@ -839,7 +839,7 @@ const AP_Param::GroupInfo GCS_MAVLINK::var_info[] = {
 void
 GCS_MAVLINK_Sub::data_stream_send(void)
 {
-	send_message(MSG_SERVO_OUTPUT_RAW);
+//	send_message(MSG_SERVO_OUTPUT_RAW);
 
 	if (waypoint_receiving) {
         // don't interfere with mission transfer
