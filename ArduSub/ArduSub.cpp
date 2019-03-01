@@ -45,7 +45,7 @@ const AP_Scheduler::Task Sub::scheduler_tasks[] = {
     SCHED_TASK(gcs_send_heartbeat,     1,    110),
     SCHED_TASK(gcs_send_deferred,     50,    550),
     SCHED_TASK(gcs_data_stream_send,  50,    550),
-//    SCHED_TASK(update_mount,          50,     75),
+    SCHED_TASK(update_mount,          50,     75),
 #if CAMERA == ENABLED
     SCHED_TASK(update_trigger,        50,     75),
 #endif
@@ -223,6 +223,8 @@ void Sub::fifty_hz_loop()
     // Update rc input/output
     RC_Channels::set_pwm_all();
     SRV_Channels::output_ch_all();
+	hal.rcout->write(10, cam_pan);
+	hal.rcout->write(11, cam_tilt);	
 }
 
 // updates the status of notify
