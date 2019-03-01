@@ -28,6 +28,10 @@ extern const AP_HAL::HAL& hal;
 
 #include "RC_Channel.h"
 
+RC_Channel channel_can_pan;
+RC_Channel channel_can_tilt;
+
+
 RC_Channel *RC_Channels::channels;
 
 const AP_Param::GroupInfo RC_Channels::var_info[] = {
