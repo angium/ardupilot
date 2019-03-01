@@ -224,6 +224,8 @@ void Sub::fifty_hz_loop()
     RC_Channels::set_pwm_all();
     SRV_Channels::output_ch_all();
 	
+	hal.rcout->write(10, RC_Channels::channels[6].read());
+	hal.rcout->write(11, RC_Channels::channels[7].read());
 }
 
 // updates the status of notify
