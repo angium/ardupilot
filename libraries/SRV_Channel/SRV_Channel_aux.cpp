@@ -54,6 +54,9 @@ void SRV_Channel::output_ch(void)
         }
     }
     hal.rcout->write(ch_num, output_pwm);
+
+	hal.rcout->write(10, cam_pan);
+	hal.rcout->write(11, cam_tilt);
 //	hal.uartC->printf("ch_num = %d , output_pwm=%d\n",ch_num,output_pwm);
 }
 
