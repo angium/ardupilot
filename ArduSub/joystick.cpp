@@ -116,7 +116,7 @@ void Sub::transform_manual_control_to_rc_override(int16_t x, int16_t y, int16_t 
 
     channels[10] = video_switch; // video switch
 
-	#if 1
+	#if 0
    	static uint8_t cnt1 = 0;
 	 cnt1++;
 	if(cnt1 > 10)
@@ -192,7 +192,7 @@ void Sub::handle_jsbutton_press(uint8_t button, bool shift, bool held)
         float step = (max - min) /100.0;
         cam_tilt = constrain_float(cam_tilt + step, min, max);
         }
-		hal.uartC->printf("cam_tilt  = %f \n",cam_tilt);
+	//	hal.uartC->printf("cam_tilt  = %f \n",cam_tilt);
 		#else
  		cam_tilt = 1900;
 		#endif
@@ -207,7 +207,7 @@ void Sub::handle_jsbutton_press(uint8_t button, bool shift, bool held)
         float step = (max - min) /100.0;
         cam_tilt = constrain_float(cam_tilt - step, min, max);
         }
-		hal.uartC->printf("cam_tilt  = %f \n",cam_tilt);
+	//	hal.uartC->printf("cam_tilt  = %f \n",cam_tilt);
 		#else
         cam_tilt = 1100;
 		#endif	
@@ -235,10 +235,10 @@ void Sub::handle_jsbutton_press(uint8_t button, bool shift, bool held)
         RC_Channel* chan = RC_Channels::rc_channel(7);
         uint16_t min = chan->get_radio_min();
         uint16_t max = chan->get_radio_max();
-        uint16_t step = (max - min) / 100;
+        float step = (max - min) / 100.0;
         cam_pan = constrain_float(cam_pan + step, min, max);
         }
-				hal.uartC->printf("cam_pan  = %f \n",cam_pan);
+	//	hal.uartC->printf("cam_pan  = %f \n",cam_pan);
 		#else
  		cam_pan = 1900;
 		#endif
@@ -250,10 +250,10 @@ void Sub::handle_jsbutton_press(uint8_t button, bool shift, bool held)
         RC_Channel* chan = RC_Channels::rc_channel(7);
         uint16_t min = chan->get_radio_min();
         uint16_t max = chan->get_radio_max();
-        uint16_t step = (max - min) /100;
+        float step = (max - min) /100.0;
         cam_pan = constrain_float(cam_pan - step, min, max);
         }
-		hal.uartC->printf("cam_pan  = %f \n",cam_pan);
+//		hal.uartC->printf("cam_pan  = %f \n",cam_pan);
 		#else
         cam_pan = 1100;
 		#endif	

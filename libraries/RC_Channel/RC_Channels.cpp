@@ -123,6 +123,7 @@ RC_Channels::set_pwm_all(void)
 {
 	static uint8_t cnt = 0;
 	cnt++;
+	#if 1
 	if(cnt>=50)
 	{
 		cnt =0;
@@ -130,6 +131,7 @@ RC_Channels::set_pwm_all(void)
 		hal.uartC->printf("RC_channels[%d] = %d\n",i,channels[i].read());
 
 	}
+	#endif 
 	for (uint8_t i=0; i<NUM_RC_CHANNELS; i++) {
         channels[i].set_pwm(channels[i].read());
     }
