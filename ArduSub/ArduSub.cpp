@@ -223,8 +223,7 @@ void Sub::fifty_hz_loop()
     // Update rc input/output
     RC_Channels::set_pwm_all();
     SRV_Channels::output_ch_all();
-	hal.rcout->write(10, cam_pan);
-	hal.rcout->write(11, cam_tilt);	
+	
 }
 
 // updates the status of notify
