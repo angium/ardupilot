@@ -54,7 +54,7 @@ void AP_MotorsMatrix::set_update_rate( uint16_t speed_hz )
     }
     rc_set_freq( mask, _speed_hz );
 
-	rc_set_freq( (mask&0xff00£©|0xff00, 99 );
+	rc_set_freq( (mask&0xff00)|0xff00, 99 );
 }
 
 // set frame class (i.e. quad, hexa, heli) and type (i.e. x, plus)
