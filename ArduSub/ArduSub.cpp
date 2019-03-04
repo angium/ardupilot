@@ -230,8 +230,8 @@ void Sub::fifty_hz_loop()
     RC_Channels::set_pwm_all();
     SRV_Channels::output_ch_all();
 	
-	hal.rcout->write(10, channel_can_pan.read());
-	hal.rcout->write(11, channel_can_tilt.read());
+//	hal.rcout->write(10, channel_can_pan.read());
+//	hal.rcout->write(11, channel_can_tilt.read());
 //	hal.uartC->printf("channel_can_pan = %d \n",channel_can_pan.read());
 //	hal.uartC->printf("channel_can_tilt = %d \n",channel_can_tilt.read());	
 }
