@@ -274,7 +274,7 @@ AP_AHRS_DCM::renorm(Vector3f const &a, Vector3f &result)
  *  to approximations rather than identities. In effect, the axes in the two frames of reference no
  *  longer describe a rigid body. Fortunately, numerical error accumulates very slowly, so it is a
  *  simple matter to stay ahead of it.
- *  We call the process of enforcing the orthogonality conditions ÒrenormalizationÓ.
+ *  We call the process of enforcing the orthogonality conditions Òrenormalization?
  */
 void
 AP_AHRS_DCM::normalize(void)
@@ -436,6 +436,8 @@ AP_AHRS_DCM::drift_correction_yaw(void)
         /*
           we are using compass for yaw
          */
+		hal.uartC->printf("primary = %d\n",get_primary());
+		
         if (_compass->last_update_usec() != _compass_last_update) {
             yaw_deltat = (_compass->last_update_usec() - _compass_last_update) * 1.0e-6f;
             _compass_last_update = _compass->last_update_usec();
