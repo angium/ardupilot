@@ -303,7 +303,7 @@ void AP_Compass_HMC5843::read()
         return;
     }
 	hal.uartC->printf("_mag_x_accum = %d,_mag_y_accum = %d,_mag_z_accum = %d\n",_mag_x_accum,_mag_y_accum,_mag_z_accum);
-	hal.uartC->printf("_scaling[0] = %d,_scaling[1] = %d,_scaling[2] = %d\n",_scaling[0],_scaling[1],_scaling[2]);
+	hal.uartC->printf("_scaling[0] = %f,_scaling[1] = %f,_scaling[2] = %f\n",_scaling[0],_scaling[1],_scaling[2]);
 
 
     Vector3f field(_mag_x_accum * _scaling[0],
