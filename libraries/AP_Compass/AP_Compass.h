@@ -72,6 +72,7 @@ public:
     /// @returns heading in radians
     ///
     float calculate_heading(const Matrix3f &dcm_matrix) const {
+    hal.uartC->printf("primary = %d\n",get_primary());
         return calculate_heading(dcm_matrix, get_primary());
     }
     float calculate_heading(const Matrix3f &dcm_matrix, uint8_t i) const;

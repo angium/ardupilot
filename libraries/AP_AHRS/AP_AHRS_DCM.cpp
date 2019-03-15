@@ -436,7 +436,7 @@ AP_AHRS_DCM::drift_correction_yaw(void)
         /*
           we are using compass for yaw
          */
-		hal.uartC->printf("primary = %d\n",get_primary());
+		
 		
         if (_compass->last_update_usec() != _compass_last_update) {
             yaw_deltat = (_compass->last_update_usec() - _compass_last_update) * 1.0e-6f;
