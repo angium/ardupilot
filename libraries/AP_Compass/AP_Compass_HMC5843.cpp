@@ -315,7 +315,9 @@ void AP_Compass_HMC5843::read()
     _mag_x_accum = _mag_y_accum = _mag_z_accum = 0;
 
     _sem->give();
-    
+
+
+hal.uartC->printf("field.x =%f,field.x =%f,field.x =%f\n",field.x,field.y,field.z);
     publish_filtered_field(field, _compass_instance);
 }
 
