@@ -75,10 +75,10 @@ void loop(void)
 		heading = compass.calculate_heading(ahrs.get_rotation_body_to_ned(), 2);
 
         // read compass at 10Hz
-		hal.uartC->printf("heading = %f  \n",heading);
+		hal.uartC->printf("heading = %f  \n",(float)heading);
 
 
-		hal.uartC->printf("	compass.get_primary(); = %f  \n",compass.get_primary());
+		hal.uartC->printf("	compass.get_primary() = %d  \n",compass.get_primary());
 
 		
         last_compass = now;
