@@ -72,7 +72,7 @@ void loop(void)
 //        heading = compass.calculate_heading(ahrs.get_rotation_body_to_ned());
 
 
-		heading = compass.calculate_heading(ahrs.get_rotation_body_to_ned(), 2)
+		heading = compass.calculate_heading(ahrs.get_rotation_body_to_ned(), 2);
         // read compass at 10Hz
         last_compass = now;
     }
