@@ -73,7 +73,7 @@ void loop(void)
 		
 		hal.uartC->printf(" compass.get_primary() = %d	\n",compass.get_primary());
 
-#if 0
+#if 1
 			heading = compass.calculate_heading(ahrs.get_rotation_body_to_ned(), 0);
 
         // read compass at 10Hz

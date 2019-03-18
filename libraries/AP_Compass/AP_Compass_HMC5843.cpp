@@ -302,7 +302,7 @@ void AP_Compass_HMC5843::read()
         _sem->give();
         return;
     }
-	hal.uartC->printf("_mag_x_accum = %d,_mag_y_accum = %d,_mag_z_accum = %d\n",_mag_x_accum,_mag_y_accum,_mag_z_accum);
+//	hal.uartC->printf("_mag_x_accum = %d,_mag_y_accum = %d,_mag_z_accum = %d\n",_mag_x_accum,_mag_y_accum,_mag_z_accum);
 //	hal.uartC->printf("_scaling[0] = %f,_scaling[1] = %f,_scaling[2] = %f\n",(float)(_scaling[0]),(float)(_scaling[1]),(float)(_scaling[2]));
 
 
@@ -317,7 +317,7 @@ void AP_Compass_HMC5843::read()
     _sem->give();
 
 
-hal.uartC->printf("field.x =%f,field.x =%f,field.x =%f\n",field.x,field.y,field.z);
+//hal.uartC->printf("field.x =%f,field.x =%f,field.x =%f\n",field.x,field.y,field.z);
     publish_filtered_field(field, _compass_instance);
 }
 
