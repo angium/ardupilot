@@ -866,7 +866,7 @@ Compass::calculate_heading(const Matrix3f &dcm_matrix, uint8_t i) const
 
     // Tilt compensated magnetic field Y component:
     const Vector3f &field = get_field(i);
-	hal.uartC->printf("filed.xfffffffffffffffffffffffff = %f\n"filed.x);
+	hal.uartC->printf("filed.xfffffffffffffffffffffffff = %f\n",filed.x);
 
     float headY = field.y * dcm_matrix.c.z - field.z * dcm_matrix.c.y;
 
