@@ -39,8 +39,8 @@
    maximum number of compass instances available on this platform. If more
    than 1 then redundant sensors may be available
  */
-#define COMPASS_MAX_INSTANCES 3
-#define COMPASS_MAX_BACKEND   3
+#define COMPASS_MAX_INSTANCES    1//3
+#define COMPASS_MAX_BACKEND   1 //3
 
 class Compass
 {

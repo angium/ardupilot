@@ -555,7 +555,6 @@ bool GCS_MAVLINK_Sub::try_send_message(enum ap_message id)
     case MSG_ATTITUDE:
         CHECK_PAYLOAD_SIZE(ATTITUDE);
         sub.send_attitude(chan);
-//		hal.uartC->printf("ahrs.yaw =%f\n",sub.ahrs.yaw);
         break;
 
     case MSG_LOCATION:

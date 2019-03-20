@@ -380,6 +380,9 @@ void Sub::one_hz_loop()
     AP_Notify::flags.pre_arm_check = arm_check;
     AP_Notify::flags.pre_arm_gps_check = position_ok();
 
+	hal.uartC->printf("ahrs.yaw =%f\n",ahrs.yaw);
+
+
     if (should_log(MASK_LOG_ANY)) {
         Log_Write_Data(DATA_AP_STATE, ap.value);
     }
