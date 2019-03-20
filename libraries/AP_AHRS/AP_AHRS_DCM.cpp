@@ -95,7 +95,9 @@ AP_AHRS_DCM::update(bool skip_ins_update)
 void
 AP_AHRS_DCM::matrix_update(float _G_Dt)
 {
-    // note that we do not include the P terms in _omega. This is
+	static int cnt =0;
+
+	// note that we do not include the P terms in _omega. This is
     // because the spin_rate is calculated from _omega.length(),
     // and including the P terms would give positive feedback into
     // the _P_gain() calculation, which can lead to a very large P
@@ -123,11 +125,14 @@ AP_AHRS_DCM::matrix_update(float _G_Dt)
     if (_G_Dt > 0) {
         _omega = delta_angle / _G_Dt;
         _omega += _omega_I;
-
+	cnt++;
+	if(cnt > = 20)
+		{
+		cnt = 0;
 	hal.uartC->printf("_omega_I.x = %f,_omega_I.y = %f,_omega_I.z = %f,\n",_omega_I.x,_omega_I.y,_omega_I.z);
 	hal.uartC->printf("_omega_P.x = %f,_omega_P.y = %f,_omega_P.z = %f,\n",_omega_P.x,_omega_P.y,_omega_P.z);
 	hal.uartC->printf("_omega_yaw_P.x = %f,_omega_yaw_P.y = %f,_omega_yaw_P.z = %f,\n",_omega_yaw_P.x,_omega_yaw_P.y,_omega_yaw_P.z);
-
+		}
 
         _dcm_matrix.rotate((_omega + _omega_P + _omega_yaw_P) * _G_Dt);
     }
