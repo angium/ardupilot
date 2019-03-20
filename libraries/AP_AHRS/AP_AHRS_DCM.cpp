@@ -126,7 +126,7 @@ AP_AHRS_DCM::matrix_update(float _G_Dt)
         _omega = delta_angle / _G_Dt;
         _omega += _omega_I;
 	cnt++;
-	if(cnt >= 20)
+	if(cnt >= 200)
 		{
 		cnt = 0;
 	hal.uartC->printf("_omega_I.x = %f,_omega_I.y = %f,_omega_I.z = %f,\n",_omega_I.x,_omega_I.y,_omega_I.z);
