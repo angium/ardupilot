@@ -841,14 +841,6 @@ void
 GCS_MAVLINK_Sub::data_stream_send(void)
 {
 //	send_message(MSG_SERVO_OUTPUT_RAW);
-	static int cnt =0;
-cnt++;
-if(cnt >=100)
-{
-	cnt = 0;
-	send_message(MSG_ATTITUDE);
-}
-
 
 	if (waypoint_receiving) {
         // don't interfere with mission transfer
