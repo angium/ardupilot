@@ -573,8 +573,9 @@ void Compass::_detect_backends(void)
         ADD_BACKEND(AP_Compass_LSM303D::probe(*this, hal.spi->get_device(HAL_INS_LSM9DS0_A_NAME)),
                      AP_Compass_LSM303D::name, false);
         break;
-
+#if 0
     case AP_BoardConfig::PX4_BOARD_PIXHAWK2:
+		
 		hal.uartC->printf("AP_BoardConfig::PX4_BOARD_PIXHAWK2\n");
         ADD_BACKEND(AP_Compass_LSM303D::probe(*this, hal.spi->get_device(HAL_INS_LSM9DS0_EXT_A_NAME), ROTATION_YAW_270),
                      AP_Compass_LSM303D::name, false);
@@ -583,7 +584,7 @@ void Compass::_detect_backends(void)
         ADD_BACKEND(AP_Compass_AK8963::probe_mpu9250(*this, 1, ROTATION_YAW_270),
                      AP_Compass_AK8963::name, false);
         break;
-
+#endif
     case AP_BoardConfig::PX4_BOARD_PIXRACER:
         ADD_BACKEND(AP_Compass_HMC5843::probe(*this, hal.spi->get_device(HAL_COMPASS_HMC5843_NAME),
                                                false, ROTATION_PITCH_180),
