@@ -462,7 +462,7 @@ AP_AHRS_DCM::drift_correction_yaw(void)
                 _flags.have_initial_yaw = true;
             }
             new_value = true;
-			hal.uartC->printf("primary = %d ,x =%f,y=%f ,z=%f,\n",_compass->get_primary(),_compass->get_field().x,_compass->get_field().y,_compass->get_field().z);
+//			hal.uartC->printf("primary = %d ,x =%f,y=%f ,z=%f,\n",_compass->get_primary(),_compass->get_field().x,_compass->get_field().y,_compass->get_field().z);
 			
             yaw_error = yaw_error_compass();
 
