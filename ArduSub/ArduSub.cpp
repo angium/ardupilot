@@ -98,7 +98,6 @@ void Sub::setup()
 
     // setup initial performance counters
     perf_info_reset();
-	hal.uartC->printf("backend_count = %d\n ",compass._backend_count);
     fast_loopTimer = AP_HAL::micros();
 }
 
