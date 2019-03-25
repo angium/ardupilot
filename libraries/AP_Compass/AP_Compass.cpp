@@ -573,7 +573,7 @@ void Compass::_detect_backends(void)
         ADD_BACKEND(AP_Compass_LSM303D::probe(*this, hal.spi->get_device(HAL_INS_LSM9DS0_A_NAME)),
                      AP_Compass_LSM303D::name, false);
         break;
-#if 0
+#if 1
     case AP_BoardConfig::PX4_BOARD_PIXHAWK2:
 		
 		hal.uartC->printf("AP_BoardConfig::PX4_BOARD_PIXHAWK2\n");
