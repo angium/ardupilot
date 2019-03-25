@@ -15,14 +15,14 @@ uint32_t timer;
 
 static void setup()
 {
-    hal.console->printf("Compass library test\n");
+    hal.uartC->printf("Compass library test\n");
 
     AP_BoardConfig{}.init();  // initialise the board drivers
 
     if (!compass.init()) {
         AP_HAL::panic("compass initialisation failed!");
     }
-    hal.console->printf("init done - %u compasses detected\n", compass.get_count());
+    hal.uartC->printf("init done - %u compasses detected\n", compass.get_count());
 
     // set offsets to account for surrounding interference
     compass.set_and_save_offsets(0, 0, 0, 0);
@@ -42,7 +42,7 @@ static void loop()
 
     compass.accumulate();
 
-    if ((AP_HAL::micros() - timer) > 100000L) {
+    if ((AP_HAL::micros() - timer) > 1000000L) {
         timer = AP_HAL::micros();
         compass.read();
         const uint32_t read_time = AP_HAL::micros() - timer;
@@ -51,10 +51,10 @@ static void loop()
         for (uint8_t i = 0; i < compass_count; i++) {
             float heading;
 
-            hal.console->printf("Compass #%u: ", i);
+            hal.uartC->printf("Compass #%u: ", i);
 
             if (!compass.healthy()) {
-                hal.console->printf("not healthy\n");
+                hal.uartC->printf("not healthy\n");
                 continue;
             }
 
@@ -82,21 +82,21 @@ static void loop()
             offset[i][2] = -(max[i][2] + min[i][2]) / 2;
 
             // display all to user
-            hal.console->printf("Heading: %.2f (%3d, %3d, %3d)",
+            hal.uartC->printf("Heading: %.2f (%3d, %3d, %3d)",
                                 (double)ToDeg(heading),
                                 (int)mag.x,
                                 (int)mag.y,
                                 (int)mag.z);
 
             // display offsets
-            hal.console->printf(" offsets(%.2f, %.2f, %.2f)",
+            hal.uartC->printf(" offsets(%.2f, %.2f, %.2f)",
                                 (double)offset[i][0],
                                 (double)offset[i][1],
                                 (double)offset[i][2]);
 
-            hal.console->printf(" t=%u", (unsigned)read_time);
+            hal.uartC->printf(" t=%u", (unsigned)read_time);
 
-            hal.console->printf("\n");
+            hal.uartC->printf("\n");
         }
     } else {
         hal.scheduler->delay(1);
