@@ -70,16 +70,10 @@ void loop(void)
     if (now - last_compass > 100 * 1000UL &&
         compass.read()) {
 
-		heading = compass.calculate_heading(ahrs.get_rotation_body_to_ned(), 2);
-        // read compass at 10Hz
-		hal.uartC->printf("heading2 = %f  \n",(float)heading);
-
 		
         heading = compass.calculate_heading(ahrs.get_rotation_body_to_ned());
 		
-		hal.uartC->printf(" compass.get_primary() = %d	\n",compass.get_primary());
-		hal.uartC->printf("heading = %f  \n",(float)heading);
-
+		hal.uartC->printf(" compass.get_primary(%d) = %f	\n",compass.get_primary(),(float)heading);
 
 
 #if 0

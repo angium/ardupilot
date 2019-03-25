@@ -722,7 +722,7 @@ Compass::accumulate(void)
 bool
 Compass::read(void)
 {
-	hal.uartC->printf("_backend_count = %d\n",_backend_count);
+//	hal.uartC->printf("_backend_count = %d\n",_backend_count);
 	for (uint8_t i=0; i< _backend_count; i++) {
         // call read on each of the backend. This call updates field[i]
         _backends[i]->read();
@@ -867,7 +867,7 @@ Compass::calculate_heading(const Matrix3f &dcm_matrix, uint8_t i) const
 
     // Tilt compensated magnetic field Y component:
     const Vector3f &field = get_field(i);
-	hal.uartC->printf("filed.xfffffffffffffffffffffffff = %f\n",field.x);
+//	hal.uartC->printf("filed.xfffffffffffffffffffffffff = %f\n",field.x);
 
     float headY = field.y * dcm_matrix.c.z - field.z * dcm_matrix.c.y;
 

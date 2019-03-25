@@ -310,7 +310,7 @@ AP_AHRS_DCM::yaw_error_compass(void)
     const Vector3f &mag = _compass->get_field();
     // get the mag vector in the earth frame
 
-				hal.uartC->printf("primary = %d ,x =%f,y=%f ,z=%f,\n",_compass->get_primary(),_compass->get_field().x,_compass->get_field().y,_compass->get_field().z);
+//				hal.uartC->printf("primary = %d ,x =%f,y=%f ,z=%f,\n",_compass->get_primary(),_compass->get_field().x,_compass->get_field().y,_compass->get_field().z);
 	
     Vector2f rb = _dcm_matrix.mulXY(mag);
 

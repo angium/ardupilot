@@ -230,7 +230,7 @@ void AP_Compass_HMC5843::_timer()
     bool result = _read_sample();
 
 
-	hal.uartC->printf("HMC5843 _timer\n");
+//	hal.uartC->printf("HMC5843 _timer\n");
 
     // always ask for a new sample
     _take_sample();
