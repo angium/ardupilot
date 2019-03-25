@@ -67,7 +67,7 @@ void loop(void)
     }
     last_t = now;
 
-    if (now - last_compass > 100 * 1000UL &&
+    if (now - last_compass > 1000 * 1000UL &&
         compass.read()) {
 
 		
@@ -102,7 +102,7 @@ void loop(void)
     ahrs.update();
     counter++;
 
-    if (now - last_print >= 100000 /* 100ms : 10hz */) {
+    if (now - last_print >= 1000000 /* 100ms : 10hz */) {
         Vector3f drift  = ahrs.get_gyro_drift();
 		hal.uartC->printf(
   //      hal.console->printf(
