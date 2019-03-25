@@ -46,6 +46,7 @@ static void loop()
         timer = AP_HAL::micros();
         compass.read();
         const uint32_t read_time = AP_HAL::micros() - timer;
+		hal.uartC->printf("nihao\n");
 
         for (uint8_t i = 0; i < compass_count; i++) {
             float heading;
