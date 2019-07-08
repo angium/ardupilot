@@ -56,7 +56,7 @@ void SRV_Channel::output_ch(void)
     hal.rcout->write(ch_num, output_pwm);
 
 
-//	hal.uartC->printf("ch_num = %d , output_pwm=%d\n",ch_num,output_pwm);
+//	hal.uartC->printf("ch_numnbbbini = %d , output_pwm=%d\n",ch_num,output_pwm);
 }
 
 /*
