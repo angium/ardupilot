@@ -192,7 +192,7 @@ void Sub::handle_jsbutton_press(uint8_t button, bool shift, bool held)
         float step = (max - min) /100.0;
         cam_tilt = constrain_float(cam_tilt + step, min, max);
         }
-	//	hal.uartC->printf("cam_tilt  = %f \n",cam_tilt);
+		hal.uartC->printf("cam_tilt  = %f \n",cam_tilt);
 		#else
  		cam_tilt = 1900;
 		#endif
@@ -207,7 +207,7 @@ void Sub::handle_jsbutton_press(uint8_t button, bool shift, bool held)
         float step = (max - min) /100.0;
         cam_tilt = constrain_float(cam_tilt - step, min, max);
         }
-	//	hal.uartC->printf("cam_tilt  = %f \n",cam_tilt);
+		hal.uartC->printf("cam_tilt  = %f \n",cam_tilt);
 		#else
         cam_tilt = 1100;
 		#endif	
@@ -238,7 +238,7 @@ void Sub::handle_jsbutton_press(uint8_t button, bool shift, bool held)
         float step = (max - min) / 100.0;
         cam_pan = constrain_float(cam_pan + step, min, max);
         }
-	//	hal.uartC->printf("cam_pan  = %f \n",cam_pan);
+		hal.uartC->printf("cam_pan  = %f \n",cam_pan);
 		#else
  		cam_pan = 1900;
 		#endif
@@ -253,7 +253,7 @@ void Sub::handle_jsbutton_press(uint8_t button, bool shift, bool held)
         float step = (max - min) /100.0;
         cam_pan = constrain_float(cam_pan - step, min, max);
         }
-//		hal.uartC->printf("cam_pan  = %f \n",cam_pan);
+		hal.uartC->printf("cam_pan  = %f \n",cam_pan);
 		#else
         cam_pan = 1100;
 		#endif	
