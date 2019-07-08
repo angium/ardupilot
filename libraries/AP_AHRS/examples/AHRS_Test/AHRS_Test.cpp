@@ -73,7 +73,7 @@ void loop(void)
 		
         heading = compass.calculate_heading(ahrs.get_rotation_body_to_ned());
 		
-		hal.uartC->printf(" compass.get_primary(%d) = %f	\n",compass.get_primary(),(float)heading);
+//		hal.uartC->printf(" compass.get_primary(%d) = %f	\n",compass.get_primary(),(float)heading);
 
 
 #if 0
@@ -104,8 +104,8 @@ void loop(void)
 
     if (now - last_print >= 1000000 /* 100ms : 10hz */) {
         Vector3f drift  = ahrs.get_gyro_drift();
-		hal.uartC->printf(
-  //      hal.console->printf(
+	//	hal.uartC->printf(
+        hal.console->printf(
                 "r:%4.1f  p:%4.1f y:%4.1f "
                     "drift=(%5.1f %5.1f %5.1f) hdg=%.1f rate=%.1f\n",
                 (double)ToDeg(ahrs.roll),

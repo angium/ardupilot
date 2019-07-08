@@ -232,8 +232,8 @@ void Sub::fifty_hz_loop()
 	
 //	hal.rcout->write(10, channel_can_pan.read());
 //	hal.rcout->write(11, channel_can_tilt.read());
-	hal.uartC->printf("channel_can_pan = %d \n",channel_can_pan.read());
-	hal.uartC->printf("channel_can_tilt = %d \n",channel_can_tilt.read());	
+//	hal.uartC->printf("channel_can_pan = %d \n",channel_can_pan.read());
+//	hal.uartC->printf("channel_can_tilt = %d \n",channel_can_tilt.read());	
 }
 
 // updates the status of notify
@@ -380,7 +380,7 @@ void Sub::one_hz_loop()
     AP_Notify::flags.pre_arm_check = arm_check;
     AP_Notify::flags.pre_arm_gps_check = position_ok();
 
-	hal.uartC->printf("ahrs.yaw =%f\n",ahrs.yaw);
+//	hal.uartC->printf("ahrs.yaw =%f\n",ahrs.yaw);
 
 
     if (should_log(MASK_LOG_ANY)) {

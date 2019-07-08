@@ -113,7 +113,7 @@ void AP_Motors::rc_set_freq(uint32_t mask, uint16_t freq_hz)
     if (freq_hz > 50) {
         _motor_fast_mask |= mask;
     }
-	hal.uartC->printf("mask = %d \n",mask);
+//	hal.uartC->printf("mask = %d \n",mask);
     hal.rcout->set_freq(mask, freq_hz);
     if ((_pwm_type == PWM_TYPE_ONESHOT ||
          _pwm_type == PWM_TYPE_ONESHOT125) &&

@@ -60,7 +60,7 @@ GCS_MAVLINK::init(AP_HAL::UARTDriver *port, mavlink_channel_t mav_chan)
     if (!valid_channel(mav_chan)) {
         return;
     }
-	hal.uartC->printf("gcs_mavlink init\n");
+//	hal.uartC->printf("gcs_mavlink init\n");
     _port = port;
     chan = mav_chan;
 
@@ -1034,7 +1034,7 @@ void GCS_MAVLINK::packetReceived(const mavlink_status_t &status,
     }
     // if a snoop handler has been setup then use it
     if (msg_snoop != nullptr) {
-		hal.uartC->printf("msg_snoop\n");
+//		hal.uartC->printf("msg_snoop\n");
         msg_snoop(&msg);
     }
     if (routing.check_and_forward(chan, &msg) &&

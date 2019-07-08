@@ -15,14 +15,14 @@ uint32_t timer;
 
 static void setup()
 {
-    hal.uartC->printf("Compass library test\n");
+ //   hal.uartC->printf("Compass library test\n");
 
     AP_BoardConfig{}.init();  // initialise the board drivers
 
     if (!compass.init()) {
         AP_HAL::panic("compass initialisation failed!");
     }
-    hal.uartC->printf("init done - %u compasses detected\n", compass.get_count());
+//    hal.uartC->printf("init done - %u compasses detected\n", compass.get_count());
 
     // set offsets to account for surrounding interference
     compass.set_and_save_offsets(0, 0, 0, 0);
