@@ -28,10 +28,6 @@ extern const AP_HAL::HAL& hal;
 
 #include "RC_Channel.h"
 
-RC_Channel channel_can_pan;
-RC_Channel channel_can_tilt;
-
-
 RC_Channel *RC_Channels::channels;
 
 const AP_Param::GroupInfo RC_Channels::var_info[] = {
@@ -125,24 +121,7 @@ RC_Channels::RC_Channels(void)
 void
 RC_Channels::set_pwm_all(void)
 {
-	static uint8_t cnt = 0;
-	cnt++;
-	#if 1
-	if(cnt>=50)
-	{
-		cnt =0;
-		for (uint8_t i=0; i<NUM_RC_CHANNELS; i++) 
-//		hal.uartC->printf("RC_channels[%d] = %d\n",i,channels[i].read());
-
-
-		channel_can_pan = channels[6];
-		channel_can_tilt = channels[7];		
-		
-
-
-	}
-	#endif 
-	for (uint8_t i=0; i<NUM_RC_CHANNELS; i++) {
+    for (uint8_t i=0; i<NUM_RC_CHANNELS; i++) {
         channels[i].set_pwm(channels[i].read());
     }
 }
