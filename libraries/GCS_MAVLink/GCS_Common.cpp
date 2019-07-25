@@ -1109,7 +1109,6 @@ GCS_MAVLINK::update(run_cli_fn run_cli)
 					hal.rcin->set_override(8,lights1_control);
 					hal.rcin->set_override(9,lights2_control);
 
-
 				}
 
 #if 0

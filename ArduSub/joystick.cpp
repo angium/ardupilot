@@ -2,7 +2,7 @@
 
 // Functions that will handle joystick/gamepad input
 // ----------------------------------------------------------------------------
-#define CAM_TEST   ENABLE
+#define CAM_TEST   DISABLE
 
 // Anonymous namespace to hold variables used only in this file
 namespace {
