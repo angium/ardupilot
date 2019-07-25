@@ -62,8 +62,8 @@ void Sub::transform_manual_control_to_rc_override(int16_t x, int16_t y, int16_t 
     bool shift = false;
 
     // Neutralize camera tilt and pan speed setpoint
-//    cam_tilt = 1500;
-//    cam_pan = 1500;
+    cam_tilt = 1500;
+    cam_pan = 1500;
 
     // Detect if any shift button is pressed
     for (uint8_t i = 0 ; i < 16 ; i++) {
