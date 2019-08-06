@@ -51,6 +51,7 @@ void Sub::poshold_run()
 
     // run loiter controller
     wp_nav.update_loiter(ekfGndSpdLimit, ekfNavVelGainScaler);
+	hal.uartC->printf("ekfGndSpdLimit = %f,ekfNavVelGainScaler = %f\n",ekfGndSpdLimit,ekfNavVelGainScaler);
 
     ///////////////////////
     // update xy outputs //
