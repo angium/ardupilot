@@ -175,6 +175,7 @@ void Sub::handle_jsbutton_press(uint8_t button, bool shift, bool held)
         set_mode(ACRO, MODE_REASON_TX_COMMAND);
         break;
     case JSButton::button_function_t::k_mode_poshold:
+		hal.uartC->printf("poshold button is pressed\n");
         set_mode(POSHOLD, MODE_REASON_TX_COMMAND);
         break;
 
