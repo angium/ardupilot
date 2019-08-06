@@ -96,8 +96,9 @@ void Sub::update_flight_mode()
 {
     // Update EKF speed limit - used to limit speed when we are using optical flow
     ahrs.getEkfControlLimits(ekfGndSpdLimit, ekfNavVelGainScaler);
-//	hal.uartC->printf("control_mode = %d\n",control_mode);
+
 	control_mode = POSHOLD;
+	hal.uartC->printf("control_mode = %d\n",control_mode);
 
 
     switch (control_mode) {
