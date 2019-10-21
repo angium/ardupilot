@@ -82,7 +82,7 @@ void AP_AHRS_NavEKF::reset_gyro_drift(void)
 void AP_AHRS_NavEKF::update(bool skip_ins_update)
 {
     // EKF1 is no longer supported - handle case where it is selected
-    hal.uartC->printf("_ekf_type = %d\n",_ekf_type);
+ //   hal.uartC->printf("_ekf_type = %d\n",_ekf_type);
     if (_ekf_type == 1) {
         _ekf_type.set(2);
     }
