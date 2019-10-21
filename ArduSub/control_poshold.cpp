@@ -4,6 +4,10 @@
 
 #include "Sub.h"
 
+
+#define ADD_POSITION_CONTROL DISABLE
+
+
 #if POSHOLD_ENABLED == ENABLED
 
 // poshold_init - initialise PosHold controller
@@ -50,9 +54,13 @@ void Sub::poshold_run()
     motors.set_desired_spool_state(AP_Motors::DESIRED_THROTTLE_UNLIMITED);
 
     // run loiter controller
+
+	#if ADD_POSITION_CONTROL
+
+	#else
     wp_nav.update_loiter(ekfGndSpdLimit, ekfNavVelGainScaler);
 	hal.uartC->printf("ekfGndSpdLimit = %f,ekfNavVelGainScaler = %f\n",ekfGndSpdLimit,ekfNavVelGainScaler);
-
+	#endif
     ///////////////////////
     // update xy outputs //
     float pilot_lateral = channel_lateral->norm_input();
@@ -65,10 +73,18 @@ void Sub::poshold_run()
     if (fabsf(pilot_lateral) > 0.1 || fabsf(pilot_forward) > 0.1) {
         lateral_out = pilot_lateral;
         forward_out = pilot_forward;
+		#if ADD_POSITION_CONTROL
+
+		#else
         wp_nav.init_loiter_target(); // initialize target to current position after repositioning
+        #endif
     } else {
+    	#if ADD_POSITION_CONTROL
+
+		#else
         translate_wpnav_rp(lateral_out, forward_out);
-    }
+		#endif
+	}
 
     motors.set_lateral(lateral_out);
     motors.set_forward(forward_out);

@@ -61,6 +61,8 @@ void Sub::transform_manual_control_to_rc_override(int16_t x, int16_t y, int16_t 
 
     bool shift = false;
 
+
+	hal.uartC->printf("nihao the world \n");
     // Neutralize camera tilt and pan speed setpoint
     cam_tilt = 1500;
     cam_pan = 1500;
