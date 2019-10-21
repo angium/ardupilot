@@ -1106,8 +1106,8 @@ GCS_MAVLINK::update(run_cli_fn run_cli)
 				
 					lights2_control = constrain_float(lights2_control, min2, max2);
 				
-					hal.rcin->set_override(8,lights1_control);
-					hal.rcin->set_override(9,lights2_control);
+			//		hal.rcin->set_override(8,lights1_control);
+			//		hal.rcin->set_override(9,lights2_control);
 
 				}
 
