@@ -110,10 +110,7 @@ void Sub::transform_manual_control_to_rc_override(int16_t x, int16_t y, int16_t 
         channels[5] = constrain_int16(yTrim*rpyScale+rpyCenter,1100,1900); // lateral for ROV
     }
 
-	hal.uartC->printf("roll_pitch_flag = %d \n",roll_pitch_flag);
 
-	hal.uartC->printf("channels[4] = %d \n",channels[4]);
-	hal.uartC->printf("channels[5] = %d \n",channels[5]);
 
 	
 
@@ -124,15 +121,19 @@ void Sub::transform_manual_control_to_rc_override(int16_t x, int16_t y, int16_t 
 
     channels[10] = video_switch; // video switch
 
-	#if 0
+	#if 1
    	static uint8_t cnt1 = 0;
 	 cnt1++;
 	if(cnt1 > 10)
 	{
 		cnt1 = 0;
-		for (uint8_t i = 0 ; i < 11 ; i++) {
-			   hal.uartC->printf("channel[%d]=%d\n",i,channels[i]);
-		   }
+//		for (uint8_t i = 0 ; i < 11 ; i++) {
+//			   hal.uartC->printf("channel[%d]=%d\n",i,channels[i]);
+//		   }
+		hal.uartC->printf("roll_pitch_flag = %d \n",roll_pitch_flag);
+		hal.uartC->printf("channels[4] = %d \n",channels[4]);
+		hal.uartC->printf("channels[5] = %d \n",channels[5]);
+		hal.uartC->printf("X = %d,Y = %d,Z = %d ,R = %d \n",x,y,z,r);		
 	}
 	#endif
     // Store old x, y, z values for use in input hold logic
