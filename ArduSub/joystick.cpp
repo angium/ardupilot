@@ -62,7 +62,6 @@ void Sub::transform_manual_control_to_rc_override(int16_t x, int16_t y, int16_t 
     bool shift = false;
 
 
-	hal.uartC->printf("nihao the world \n");
     // Neutralize camera tilt and pan speed setpoint
     cam_tilt = 1500;
     cam_pan = 1500;
@@ -110,6 +109,13 @@ void Sub::transform_manual_control_to_rc_override(int16_t x, int16_t y, int16_t 
         channels[4] = constrain_int16(xTrim*rpyScale+rpyCenter,1100,1900); // forward for ROV
         channels[5] = constrain_int16(yTrim*rpyScale+rpyCenter,1100,1900); // lateral for ROV
     }
+
+	hal.uartC->printf("roll_pitch_flag = %d \n",roll_pitch_flag);
+
+	hal.uartC->printf("channels[4] = %d \n",channels[4]);
+	hal.uartC->printf("channels[5] = %d \n",channels[5]);
+
+	
 
     channels[6] = cam_pan;       // camera pan
     channels[7] = cam_tilt;      // camera tilt
