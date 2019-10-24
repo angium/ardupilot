@@ -109,11 +109,6 @@ void Sub::transform_manual_control_to_rc_override(int16_t x, int16_t y, int16_t 
         channels[4] = constrain_int16(xTrim*rpyScale+rpyCenter,1100,1900); // forward for ROV
         channels[5] = constrain_int16(yTrim*rpyScale+rpyCenter,1100,1900); // lateral for ROV
     }
-
-
-
-	
-
     channels[6] = cam_pan;       // camera pan
     channels[7] = cam_tilt;      // camera tilt
     channels[8] = lights1;       // lights 1
