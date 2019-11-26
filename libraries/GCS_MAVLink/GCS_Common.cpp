@@ -1081,7 +1081,7 @@ GCS_MAVLINK::update(run_cli_fn run_cli)
     }
 
 
-		if(receivedata[5] ==233&&receivedata[0] ==254)
+		if(receivedata[5] ==233&&receivedata[0] ==254)//模拟量控制灯姜里运修改
 		{
 		    uint8_t sum_rec = 0;
 				for (uint16_t i=1; i<(nbytes-2-1); i++)
